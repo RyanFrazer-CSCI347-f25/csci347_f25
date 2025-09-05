@@ -2,32 +2,29 @@
 
 **Due**: End of Week 9 (see Canvas for exact deadline)  
 **Points**: 25 points  
+**Estimated Time**: 6 hours  
 **Submission**: Submit Pull Request URL to Canvas
 
 ## 🎯 Assignment Overview
 
-Design and implement a comprehensive enterprise security architecture that demonstrates risk-based decision making, threat modeling, security controls integration, and program metrics. Your solution should showcase understanding of security frameworks (NIST, ISO 27001, CIS Controls) and practical application of security architecture principles.
+Design focused security architecture using threat modeling and provided security framework templates. This assignment emphasizes threat analysis and risk-based decision making using pre-built framework mappings and templates.
 
 ## 📋 Learning Outcomes
 
 This assignment assesses your ability to:
 
-1. **Threat Modeling & Risk Assessment** (5 points)
-2. **Security Framework Integration** (5 points) 
-3. **Security Controls Implementation** (5 points)
-4. **Metrics & Dashboard Development** (5 points)
-5. **Architecture Documentation** (5 points)
+1. **Threat Modeling & Risk Assessment** (15 points)
+2. **Architecture Documentation** (5 points)
+3. **Risk Communication** (5 points)
 
 ## 🔧 Technical Requirements
 
 ### Required Implementation
-Build a Python-based security architecture system with these components:
+Build focused threat modeling system:
 
 ```python
 # Core modules to implement
 threat_modeling.py      # STRIDE analysis & risk calculator
-framework_mapper.py     # NIST/ISO/CIS controls mapping
-security_dashboard.py   # Metrics and KPI visualization
 architecture_report.py  # Documentation generator
 ```
 
@@ -43,70 +40,45 @@ import json
 
 ## 📝 Detailed Requirements
 
-### 1. Threat Modeling & Risk Assessment (5 points)
+### 1. Threat Modeling & Risk Assessment (15 points)
 
-Implement a STRIDE-based threat modeling system:
+**Focus Area: STRIDE Threat Analysis**
 
-**Required Features:**
-- **Asset identification** with classification levels
-- **STRIDE threat analysis** for each asset type
-- **Quantitative risk calculation** (ALE = SLE × ARO)
-- **Risk prioritization** with business impact scoring
-- **Threat model visualization** showing attack vectors
-
-**Deliverable:** `threat_modeling.py` with classes for Asset, Threat, and RiskCalculator
-
-### 2. Security Framework Integration (5 points)
-
-Create a control mapping system across multiple frameworks:
+Implement comprehensive threat modeling system:
 
 **Required Features:**
-- **NIST CSF mapping** (Identify, Protect, Detect, Respond, Recover)
-- **ISO 27001 controls** mapping to business processes
-- **CIS Controls** implementation prioritization 
-- **Gap analysis** identifying missing controls
-- **Compliance reporting** for multiple standards
+- **Asset identification** with business criticality classification
+- **STRIDE threat analysis** for each asset type with detailed scenarios
+- **Quantitative risk calculation** using ALE methodology (SLE × ARO)
+- **Risk prioritization** with business impact and likelihood scoring
+- **Threat model visualization** showing attack vectors and relationships
+- **Risk treatment recommendations** with cost-benefit analysis
 
-**Deliverable:** `framework_mapper.py` with comprehensive control mappings
+**Deliverable:** `threat_modeling.py` with Asset, Threat, and RiskCalculator classes
 
-### 3. Security Controls Implementation (5 points)
+*Note: Framework mappings and dashboard templates provided as starter code*
 
-Design and implement security control automation:
+### 2. Architecture Documentation (5 points)
 
-**Required Features:**
-- **Control effectiveness** measurement and scoring
-- **Implementation cost** analysis and ROI calculation
-- **Control dependencies** and prerequisite mapping
-- **Automated control** deployment simulation
-- **Control testing** and validation framework
-
-**Deliverable:** `security_controls.py` with control implementation logic
-
-### 4. Metrics & Dashboard Development (5 points)
-
-Build executive and operational security dashboards:
+Create professional security architecture documentation:
 
 **Required Features:**
-- **Executive dashboard** with business risk metrics
-- **Operational dashboard** with technical KPIs
-- **Trend analysis** showing security posture over time
-- **Alert system** for metric threshold breaches
-- **Custom reporting** for different stakeholder needs
-
-**Deliverable:** `security_dashboard.py` with visualization capabilities
-
-### 5. Architecture Documentation (5 points)
-
-Create comprehensive security architecture documentation:
-
-**Required Features:**
-- **Architecture diagrams** showing security layers
-- **Risk register** with treatment decisions
-- **Security policies** and procedure templates
-- **Implementation roadmap** with timelines
-- **Executive summary** with business justification
+- **Threat model diagrams** showing attack vectors and defenses
+- **Risk register** with treatment decisions and timelines
+- **Executive summary** with business risk justification
+- **Implementation roadmap** with prioritized security investments
 
 **Deliverable:** `architecture_report.py` generating professional documentation
+
+### 3. Risk Communication (5 points)
+
+Develop clear risk communication materials:
+
+**Required Features:**
+- **Executive briefing** materials with business impact focus
+- **Technical implementation** guidance for security teams
+- **Risk visualization** showing threat landscape and priorities
+- **ROI analysis** for proposed security investments
 
 ## 💻 Implementation Guidelines
 
@@ -114,18 +86,16 @@ Create comprehensive security architecture documentation:
 ```
 ├── src/
 │   ├── threat_modeling.py
-│   ├── framework_mapper.py
-│   ├── security_controls.py
-│   ├── security_dashboard.py
 │   └── architecture_report.py
 ├── data/
 │   ├── assets.json
-│   ├── threats.json
-│   ├── controls.json
-│   └── metrics.json
+│   └── threats.json
+├── templates/
+│   ├── framework_mappings.json  # Pre-built NIST/ISO mappings
+│   └── dashboard_templates/     # Visualization templates
 ├── reports/
+│   ├── threat_model_report.html
 │   ├── executive_summary.pdf
-│   ├── technical_report.html
 │   └── risk_register.xlsx
 └── README.md
 ```
@@ -206,42 +176,39 @@ Provide realistic test data including:
 
 ## 📊 Grading Rubric (25 Points Total)
 
+### Component Breakdown
+
+| Component | Weight | Points |
+|-----------|---------|-------|
+| **Threat Modeling & Risk Assessment** | 60% | 15 points |
+| **Architecture Documentation** | 20% | 5 points |
+| **Risk Communication** | 20% | 5 points |
+
 ### 5-Point Scale Criteria
 
-**Threat Modeling & Risk Assessment (5 points)**
-- **Excellent (5)**: Complete STRIDE implementation, accurate risk calculations, sophisticated threat scenarios
-- **Proficient (4)**: Good threat modeling, mostly accurate calculations, adequate scenarios
-- **Developing (3)**: Basic threat identification, simple risk scoring, limited scenarios
-- **Needs Improvement (2)**: Incomplete threat analysis, calculation errors, unrealistic scenarios
-- **Inadequate (1)**: Major gaps in threat modeling, significant errors, minimal scenarios
-
-**Security Framework Integration (5 points)**
-- **Excellent (5)**: Comprehensive mapping across all frameworks, accurate control relationships, gap analysis
-- **Proficient (4)**: Good framework mapping, minor gaps, basic control relationships
-- **Developing (3)**: Limited framework coverage, some mapping errors, basic functionality
-- **Needs Improvement (2)**: Incomplete mapping, significant errors, poor framework understanding
-- **Inadequate (1)**: Minimal framework integration, major errors, missing core components
-
-**Security Controls Implementation (5 points)**
-- **Excellent (5)**: Sophisticated control logic, ROI analysis, dependency tracking, automation features
-- **Proficient (4)**: Good control implementation, basic ROI, some automation
-- **Developing (3)**: Basic controls, limited analysis, manual processes
-- **Needs Improvement (2)**: Simple controls, poor analysis, minimal functionality
-- **Inadequate (1)**: Inadequate control implementation, major functionality gaps
-
-**Metrics & Dashboard Development (5 points)**
-- **Excellent (5)**: Professional dashboards, comprehensive metrics, excellent visualizations, alerting
-- **Proficient (4)**: Good dashboards, adequate metrics, decent visualizations
-- **Developing (3)**: Basic dashboards, limited metrics, simple visualizations
-- **Needs Improvement (2)**: Poor dashboards, few metrics, inadequate visualizations
-- **Inadequate (1)**: Minimal dashboard functionality, missing key metrics
+**Threat Modeling & Risk Assessment (15 points)**
+- **Excellent (15)**: Complete STRIDE implementation, accurate quantitative risk calculations, sophisticated threat scenarios, comprehensive business impact analysis, professional risk prioritization
+- **Proficient (12)**: Good threat modeling, mostly accurate calculations, adequate scenarios, reasonable business context
+- **Developing (9)**: Basic threat identification, simple risk scoring, limited scenarios, minimal business analysis
+- **Needs Improvement (6)**: Incomplete threat analysis, calculation errors, unrealistic scenarios, poor business understanding
+- **Inadequate (3)**: Major gaps in threat modeling, significant errors, minimal scenarios, no business context
+- **No Submission (0)**: Missing or no attempt
 
 **Architecture Documentation (5 points)**
-- **Excellent (5)**: Comprehensive documentation, professional diagrams, executive summaries, implementation guides
-- **Proficient (4)**: Good documentation, adequate diagrams, clear explanations
-- **Developing (3)**: Basic documentation, simple diagrams, limited detail
-- **Needs Improvement (2)**: Poor documentation, inadequate diagrams, unclear explanations
+- **Excellent (5)**: Comprehensive documentation, professional diagrams, clear executive summaries, detailed implementation guides, excellent presentation
+- **Proficient (4)**: Good documentation, adequate diagrams, clear explanations, decent presentation
+- **Developing (3)**: Basic documentation, simple diagrams, limited detail, adequate structure
+- **Needs Improvement (2)**: Poor documentation, inadequate diagrams, unclear explanations, weak structure
 - **Inadequate (1)**: Minimal documentation, missing key components, unprofessional presentation
+- **No Submission (0)**: Missing or no attempt
+
+**Risk Communication (5 points)**
+- **Excellent (5)**: Clear executive communication, actionable technical guidance, effective visualizations, appropriate audience targeting, compelling ROI analysis
+- **Proficient (4)**: Good communication, adequate guidance, reasonable visualizations, decent ROI analysis
+- **Developing (3)**: Basic communication, limited guidance, simple visualizations, basic ROI
+- **Needs Improvement (2)**: Poor communication, weak guidance, inadequate visualizations, unrealistic ROI
+- **Inadequate (1)**: Ineffective communication, no clear guidance, unusable materials
+- **No Submission (0)**: Missing or no attempt
 
 ### Grade Scale:
 - **A**: 23-25 points (92-100%)
@@ -250,13 +217,9 @@ Provide realistic test data including:
 - **D**: 15-17 points (60-71%)
 - **F**: Below 15 points (<60%)
 
-## 🚀 Bonus Opportunities (+2 points max)
+## 🚀 Optional Challenge
 
-- **Advanced Visualization**: Interactive dashboards with drill-down capabilities
-- **Machine Learning**: Anomaly detection for security metrics
-- **API Integration**: Connect to real security tools (simulated)
-- **Mobile Dashboard**: Responsive design for mobile access
-- **Advanced Analytics**: Predictive risk modeling
+**Advanced Threat Modeling**: Implement attack tree analysis in addition to STRIDE, with probability calculations for multi-step attack scenarios. Include threat actor profiling and capability assessment.
 
 ## 💡 Tips for Success
 

@@ -2,66 +2,48 @@
 
 **Due**: End of Week 3 (see Canvas for exact deadline)  
 **Points**: 25 points  
+**Estimated Time**: 6 hours  
 **Submission**: Submit Pull Request URL to Canvas
 
 ## 🎯 Assignment Overview
 
-Build a complete Certificate Authority (CA) system that can issue, validate, and revoke digital certificates. Your implementation should demonstrate mastery of PKI concepts, X.509 certificate handling, and certificate lifecycle management learned this week.
+Build a focused Certificate Authority (CA) system that demonstrates certificate validation and basic PKI operations. This assignment emphasizes core PKI concepts while providing infrastructure code to reduce complexity.
 
 ## 📋 Requirements
 
-### Core Functionality (70 points)
+### Core Functionality (15 points)
 
-Your CA system must implement these features:
+**Focus Area: Certificate Validation Engine**
 
-#### 1. Root Certificate Authority Setup (20 points)
-- **Self-signed root CA certificate** generation
-- **RSA key pair generation** (minimum 2048 bits)
-- **Proper certificate fields** (subject, issuer, validity period, extensions)
-- **Certificate storage** in PEM format
-
-#### 2. Certificate Signing Request (CSR) Processing (25 points)
-- **CSR generation** for client certificates
-- **CSR validation** and parsing
-- **Certificate issuance** signed by root CA
-- **Serial number tracking** to prevent duplicates
-
-#### 3. Certificate Validation System (25 points)
+#### 1. Certificate Validation System (15 points)
 - **Certificate chain verification** up to root CA
-- **Expiration date checking**
+- **Expiration date checking** 
 - **Digital signature validation**
-- **Certificate revocation list (CRL)** support
+- **Certificate format parsing** and field extraction
+- **Basic revocation checking**
 
-### Command-Line Interface (20 points)
+*Note: CA infrastructure and CSR processing code provided as starter templates*
 
-Implement a user-friendly CLI with these commands:
+### Command-Line Interface (5 points)
+
+Implement validation-focused CLI commands:
 
 ```bash
-# Initialize CA (create root certificate)
-python ca_system.py init --ca-name "MyCompany CA"
-
-# Generate CSR for client
-python ca_system.py create-csr --name "client.example.com" --email "admin@example.com"
-
-# Sign CSR and issue certificate
-python ca_system.py sign-csr --csr-file client.csr --days 365
-
-# Validate certificate
+# Validate certificate (primary focus)
 python ca_system.py validate --cert-file client.crt
 
-# Revoke certificate
-python ca_system.py revoke --cert-file client.crt --reason "keyCompromise"
+# Check certificate details
+python ca_system.py info --cert-file client.crt
 
-# List all issued certificates
-python ca_system.py list-certs
+# Verify certificate chain
+python ca_system.py verify-chain --cert-file client.crt --ca-file ca.crt
 ```
 
-### Security Features (10 points)
+### Security Features (5 points)
 
-- **Private key protection** with strong file permissions
-- **Certificate serial number randomization**
-- **Proper certificate extensions** (Key Usage, Extended Key Usage)
-- **Secure revocation tracking**
+- **Certificate parsing security** with input validation
+- **Proper error handling** for malformed certificates
+- **Secure validation algorithms** following standards
 
 ## 🔧 Technical Specifications
 
@@ -247,58 +229,40 @@ $ python ca_system.py revoke --cert-file client.example.com.crt --reason "keyCom
    Updated CRL: crl.pem
 ```
 
-## 📊 Grading Rubric (100 Points Total)
+## 📊 Grading Rubric (25 Points Total)
 
 ### Component Breakdown
 
 | Component | Weight | Points |
 |-----------|---------|---------|
-| **CA Initialization** | 20% | 20 points |
-| **CSR Processing** | 25% | 25 points |
-| **Certificate Validation** | 25% | 25 points |
-| **CLI Interface** | 20% | 20 points |
-| **Security Practices** | 10% | 10 points |
+| **Certificate Validation** | 60% | 15 points |
+| **CLI Interface** | 20% | 5 points |
+| **Security Practices** | 20% | 5 points |
 
 ### 5-Point Scale Criteria
 
-**CA Initialization (20 points)**
-- **Excellent (20)**: Perfect root CA creation, proper key generation, secure storage
-- **Proficient (16)**: Good CA setup, minor configuration issues
-- **Developing (12)**: Basic CA functionality, some security concerns
-- **Needs Improvement (8)**: CA works but significant security issues
-- **Inadequate (4)**: Major CA problems or doesn't work properly
+**Certificate Validation (15 points)**
+- **Excellent (15)**: Comprehensive validation, chain verification, proper parsing, all security checks
+- **Proficient (12)**: Good validation logic, most security checks implemented
+- **Developing (9)**: Basic validation, some security checks missing
+- **Needs Improvement (6)**: Limited validation, security gaps
+- **Inadequate (3)**: Poor validation, major security vulnerabilities
 - **No Submission (0)**: Missing or no attempt
 
-**CSR Processing (25 points)**
-- **Excellent (25)**: Perfect CSR generation/signing, proper extensions, serial tracking
-- **Proficient (20)**: Good CSR handling, minor issues with extensions
-- **Developing (15)**: Basic CSR processing, limited extension support
-- **Needs Improvement (10)**: CSR processing works but with significant issues
-- **Inadequate (5)**: Poor CSR handling, major functionality problems
+**CLI Interface (5 points)**
+- **Excellent (5)**: All validation commands work perfectly, clear output
+- **Proficient (4)**: Most commands work well, good usability
+- **Developing (3)**: Basic commands functional, adequate interface
+- **Needs Improvement (2)**: Some commands work, poor usability
+- **Inadequate (1)**: Major interface problems, commands fail
 - **No Submission (0)**: Missing or no attempt
 
-**Certificate Validation (25 points)**
-- **Excellent (25)**: Comprehensive validation, chain verification, revocation checking
-- **Proficient (20)**: Good validation logic, most security checks implemented
-- **Developing (15)**: Basic validation, some security checks missing
-- **Needs Improvement (10)**: Limited validation, security gaps
-- **Inadequate (5)**: Poor validation, major security vulnerabilities
-- **No Submission (0)**: Missing or no attempt
-
-**CLI Interface (20 points)**
-- **Excellent (20)**: All commands work perfectly, excellent user experience
-- **Proficient (16)**: Most commands work well, good usability
-- **Developing (12)**: Basic commands functional, adequate interface
-- **Needs Improvement (8)**: Some commands work, poor usability
-- **Inadequate (4)**: Major interface problems, commands fail
-- **No Submission (0)**: Missing or no attempt
-
-**Security Practices (10 points)**
-- **Excellent (10)**: Comprehensive security implementation, proper key protection
-- **Proficient (8)**: Good security practices, minor vulnerabilities
-- **Developing (6)**: Basic security considerations
-- **Needs Improvement (4)**: Limited security practices
-- **Inadequate (2)**: Poor or no security considerations
+**Security Practices (5 points)**
+- **Excellent (5)**: Secure validation algorithms, proper error handling, input validation
+- **Proficient (4)**: Good security practices, minor vulnerabilities
+- **Developing (3)**: Basic security considerations
+- **Needs Improvement (2)**: Limited security practices
+- **Inadequate (1)**: Poor or no security considerations
 - **No Submission (0)**: Missing or no attempt
 
 ### Grade Scale
@@ -308,49 +272,21 @@ $ python ca_system.py revoke --cert-file client.example.com.crt --reason "keyCom
 - **15-17 points (D)**: Below expectations, significant issues
 - **Below 15 points (F)**: Unsatisfactory, major problems
 
-## 🚀 Bonus Opportunities (+5 points each)
+## 🚀 Optional Challenge
 
-### 1. OCSP Responder
-Implement Online Certificate Status Protocol:
-```python
-def create_ocsp_response(cert_serial, ca_cert, ca_private_key):
-    """Create OCSP response for certificate status"""
-    # Generate OCSP response
-    # Include certificate status and signature
-```
-
-### 2. Certificate Transparency Log
-Add basic CT log functionality:
-```python
-def add_to_ct_log(certificate):
-    """Add certificate to transparency log"""
-    # Create log entry with timestamp
-    # Generate Merkle tree proof
-```
-
-### 3. Hardware Security Module Simulation
-Simulate HSM for private key operations:
-```python
-class HSMSimulator:
-    """Simulate hardware-based key operations"""
-    def sign_certificate(self, cert_data):
-        # Simulate hardware signing process
-        # Add additional security validations
-```
+**Advanced Certificate Analysis**: Implement certificate extension parsing and analysis for Key Usage, Extended Key Usage, and Subject Alternative Name fields. Document findings about certificate security policies.
 
 ## 📋 Submission Checklist
 
 Before submitting, verify:
 
-- [ ] **CA initialization creates proper root certificate**
-- [ ] **CSR generation and signing workflow functions correctly**
 - [ ] **Certificate validation performs all security checks**
-- [ ] **All CLI commands work without errors**
-- [ ] **Private keys are properly protected (file permissions)**
-- [ ] **Certificate database tracks all issued certificates**
-- [ ] **Revocation functionality updates CRL properly**
-- [ ] **Code handles error conditions gracefully**
-- [ ] **README.txt explains usage and security considerations**
+- [ ] **Certificate chain verification works correctly**
+- [ ] **CLI validation commands work without errors**
+- [ ] **Certificate parsing handles various formats**
+- [ ] **Error handling for invalid certificates**
+- [ ] **Code handles edge cases gracefully**
+- [ ] **README.txt explains validation methodology**
 
 ### Testing Your CA System
 ```bash

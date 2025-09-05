@@ -2,34 +2,31 @@
 
 **Due**: End of Week 12 (see Canvas for exact deadline)  
 **Points**: 25 points  
+**Estimated Time**: 6 hours  
 **Submission**: Submit Pull Request URL to Canvas
 
 ## 🎯 Assignment Overview
 
-Develop a comprehensive memory forensics and malware analysis platform that can analyze volatile memory dumps, detect sophisticated malware techniques, identify rootkits and process injection, and automate malware analysis workflows. Your solution should demonstrate advanced memory analysis capabilities and threat detection techniques.
+Build focused memory analysis tools using provided memory dumps and pre-built analysis frameworks. This assignment emphasizes practical memory forensics skills using existing tools and provided memory dump files.
 
 ## 📋 Learning Outcomes
 
 This assignment assesses your ability to:
 
-1. **Memory Dump Analysis** (5 points)
-2. **Malware Detection & Classification** (5 points)
-3. **Advanced Threat Investigation** (5 points)
-4. **Process & Rootkit Analysis** (5 points)
-5. **Automated Analysis Pipeline** (5 points)
+1. **Memory Dump Analysis Using Volatility** (15 points)
+2. **Analysis Reporting** (5 points)
+3. **Threat Identification** (5 points)
 
 ## 🔧 Technical Requirements
 
 ### Required Implementation
-Build a Python-based memory forensics platform:
+Build memory analysis tools using provided frameworks:
 
 ```python
 # Core modules to implement
-memory_analyzer.py      # Core memory dump analysis
-malware_detector.py     # Malware signature and behavior detection
-threat_hunter.py        # Advanced threat hunting capabilities
-rootkit_detector.py     # Rootkit and steganography detection
-analysis_pipeline.py    # Automated analysis workflows
+memory_analyzer.py      # Volatility-based memory analysis
+analysis_reporter.py    # Professional analysis reporting
+threat_detector.py      # Basic malware and anomaly detection
 ```
 
 ### Required Libraries
@@ -49,70 +46,41 @@ from collections import defaultdict
 
 ## 📝 Detailed Requirements
 
-### 1. Memory Dump Analysis (5 points)
+### 1. Memory Dump Analysis Using Volatility (15 points)
 
-Implement core memory analysis capabilities:
-
-**Required Features:**
-- **Process enumeration** with parent-child relationships
-- **Network connection** extraction and analysis
-- **DLL and handle** enumeration for processes
-- **Memory region** analysis (VAD tree simulation)
-- **String extraction** with context and filtering
-
-**Deliverable:** `memory_analyzer.py` with comprehensive memory parsing
-
-### 2. Malware Detection & Classification (5 points)
-
-Create advanced malware detection system:
+**Focus Area: Practical Memory Forensics with Professional Tools**
 
 **Required Features:**
-- **YARA-style rule** engine for signature detection
-- **Behavioral analysis** based on API calls and patterns
-- **Packer detection** and unpacking indicators
-- **Communication pattern** analysis for C2 detection
-- **Malware family** classification using characteristics
+- **Process analysis** using Volatility framework with provided memory dumps
+- **Network artifacts** extraction and analysis from memory
+- **Registry analysis** from memory-resident registry data
+- **File extraction** and analysis from memory dumps
+- **Timeline analysis** of system activities from memory artifacts
+- **Malware detection** using memory-based indicators
 
-**Deliverable:** `malware_detector.py` with detection and classification
+**Deliverable:** `memory_analyzer.py` leveraging Volatility framework
 
-### 3. Advanced Threat Investigation (5 points)
+*Note: Volatility framework pre-installed, memory dumps provided*
 
-Build sophisticated threat hunting capabilities:
-
-**Required Features:**
-- **Process injection** detection (hollowing, DLL injection, APC)
-- **Privilege escalation** technique identification
-- **Lateral movement** indicator detection
-- **Persistence mechanism** discovery
-- **APT technique** mapping to MITRE ATT&CK framework
-
-**Deliverable:** `threat_hunter.py` with advanced detection algorithms
-
-### 4. Process & Rootkit Analysis (5 points)
-
-Implement rootkit and steganography detection:
+### 2. Analysis Reporting (5 points)
 
 **Required Features:**
-- **Hidden process** detection using multiple enumeration methods
-- **SSDT hook** detection for kernel rootkits
-- **Process hollowing** and code injection identification
-- **Memory steganography** detection
-- **Cross-view analysis** to identify discrepancies
+- **Executive summary** with key findings from memory analysis
+- **Technical findings** with detailed artifact analysis
+- **IOC documentation** with extracted indicators of compromise
+- **Methodology documentation** explaining analysis procedures used
 
-**Deliverable:** `rootkit_detector.py` with anti-rootkit capabilities
+**Deliverable:** `analysis_reporter.py` with professional reporting
 
-### 5. Automated Analysis Pipeline (5 points)
-
-Create comprehensive automation and reporting:
+### 3. Threat Identification (5 points)
 
 **Required Features:**
-- **Multi-stage analysis** pipeline with dependency management
-- **IOC extraction** and threat intelligence integration
-- **Automated reporting** with executive and technical summaries
-- **Similarity analysis** for malware family clustering
-- **Batch processing** capabilities for multiple samples
+- **Anomaly detection** in process behavior and system artifacts
+- **Malware identification** using memory-based signatures
+- **Suspicious activity** flagging and prioritization
+- **Attack pattern** recognition from memory artifacts
 
-**Deliverable:** `analysis_pipeline.py` with workflow automation
+**Deliverable:** `threat_detector.py` with basic threat hunting
 
 ## 💻 Implementation Guidelines
 
@@ -120,25 +88,18 @@ Create comprehensive automation and reporting:
 ```
 ├── src/
 │   ├── memory_analyzer.py
-│   ├── malware_detector.py
-│   ├── threat_hunter.py
-│   ├── rootkit_detector.py
-│   ├── analysis_pipeline.py
-│   └── ioc_extractor.py
-├── rules/
-│   ├── malware_signatures.yara
-│   ├── behavioral_rules.json
-│   └── apt_indicators.json
+│   ├── analysis_reporter.py
+│   └── threat_detector.py
 ├── samples/
-│   ├── memory_dumps/
-│   │   ├── sample1.dmp
-│   │   ├── sample2.dmp
-│   │   └── sample3.dmp
-│   └── test_malware/
+│   ├── memory_dumps/          # Provided memory dump files
+│   │   ├── infected_system.dmp
+│   │   ├── clean_system.dmp
+│   │   └── suspicious_activity.dmp
+│   └── volatility_profiles/    # Pre-configured profiles
 ├── reports/
-│   ├── analysis_001.html
-│   ├── ioc_report.json
-│   └── executive_summary.pdf
+│   ├── memory_analysis_report.html
+│   ├── ioc_summary.json
+│   └── findings_summary.md
 └── README.md
 ```
 
@@ -358,42 +319,39 @@ Create comprehensive test suites including:
 
 ## 📊 Grading Rubric (25 Points Total)
 
+### Component Breakdown
+
+| Component | Weight | Points |
+|-----------|---------|-------|
+| **Memory Analysis Using Volatility** | 60% | 15 points |
+| **Analysis Reporting** | 20% | 5 points |
+| **Threat Identification** | 20% | 5 points |
+
 ### 5-Point Scale Criteria
 
-**Memory Dump Analysis (5 points)**
-- **Excellent (5)**: Comprehensive memory parsing, accurate process enumeration, detailed VAD analysis, string extraction
-- **Proficient (4)**: Good memory analysis, adequate process details, basic VAD handling
-- **Developing (3)**: Simple memory parsing, limited process information, basic functionality
-- **Needs Improvement (2)**: Poor memory analysis, significant gaps, accuracy issues
-- **Inadequate (1)**: Minimal memory capabilities, major functionality missing
+**Memory Analysis Using Volatility (15 points)**
+- **Excellent (15)**: Comprehensive Volatility usage, accurate process analysis, thorough network artifacts extraction, complete registry analysis, successful file extraction, detailed timeline analysis, effective malware detection
+- **Proficient (12)**: Good Volatility usage, adequate analysis capabilities, reasonable artifact extraction, basic timeline construction
+- **Developing (9)**: Simple Volatility usage, limited analysis depth, minimal artifact extraction, basic timeline
+- **Needs Improvement (6)**: Poor Volatility usage, weak analysis capabilities, inadequate artifact extraction, incomplete timeline
+- **Inadequate (3)**: Minimal Volatility usage, major analysis gaps, broken artifact extraction, unusable timeline
+- **No Submission (0)**: Missing or no attempt
 
-**Malware Detection & Classification (5 points)**
-- **Excellent (5)**: Sophisticated detection engine, high accuracy, comprehensive family classification, behavioral analysis
-- **Proficient (4)**: Good detection capabilities, adequate accuracy, basic classification
-- **Developing (3)**: Simple detection rules, limited accuracy, basic functionality
-- **Needs Improvement (2)**: Poor detection rates, weak classification, significant limitations
-- **Inadequate (1)**: Minimal detection capabilities, major accuracy issues
+**Analysis Reporting (5 points)**
+- **Excellent (5)**: Professional reports, comprehensive executive summary, detailed technical findings, complete IOC documentation, excellent methodology explanation
+- **Proficient (4)**: Good reports, adequate summaries, decent technical detail, basic IOC documentation
+- **Developing (3)**: Basic reporting, limited structure, simple findings, minimal documentation
+- **Needs Improvement (2)**: Poor report quality, inadequate structure, weak findings, unprofessional presentation
+- **Inadequate (1)**: Minimal reporting capabilities, major gaps, unusable documentation
+- **No Submission (0)**: Missing or no attempt
 
-**Advanced Threat Investigation (5 points)**
-- **Excellent (5)**: Advanced injection detection, comprehensive APT mapping, MITRE ATT&CK integration, high accuracy
-- **Proficient (4)**: Good threat detection, adequate technique mapping, reasonable accuracy
-- **Developing (3)**: Basic threat hunting, limited technique detection, simple functionality
-- **Needs Improvement (2)**: Poor threat detection, weak technique mapping, low accuracy
-- **Inadequate (1)**: Minimal threat hunting capabilities, major gaps
-
-**Process & Rootkit Analysis (5 points)**
-- **Excellent (5)**: Advanced rootkit detection, comprehensive hook analysis, cross-view validation, steganography detection
-- **Proficient (4)**: Good rootkit detection, basic hook analysis, adequate cross-view
-- **Developing (3)**: Simple rootkit detection, limited analysis, basic functionality
-- **Needs Improvement (2)**: Poor rootkit detection, weak analysis, significant limitations
-- **Inadequate (1)**: Minimal rootkit capabilities, major detection gaps
-
-**Automated Analysis Pipeline (5 points)**
-- **Excellent (5)**: Comprehensive automation, professional reporting, IOC extraction, batch processing, high reliability
-- **Proficient (4)**: Good automation, adequate reporting, basic IOC extraction
-- **Developing (3)**: Simple automation, limited reporting, basic functionality
-- **Needs Improvement (2)**: Poor automation, weak reporting, significant limitations
-- **Inadequate (1)**: Minimal automation capabilities, major functionality gaps
+**Threat Identification (5 points)**
+- **Excellent (5)**: Accurate anomaly detection, effective malware identification, proper suspicious activity flagging, clear attack pattern recognition
+- **Proficient (4)**: Good threat detection, adequate malware identification, reasonable activity flagging
+- **Developing (3)**: Basic threat detection, limited malware identification, simple activity flagging
+- **Needs Improvement (2)**: Poor threat detection, weak malware identification, inadequate activity analysis
+- **Inadequate (1)**: Minimal threat detection capabilities, major identification gaps
+- **No Submission (0)**: Missing or no attempt
 
 ### Grade Scale:
 - **A**: 23-25 points (92-100%)
@@ -402,13 +360,9 @@ Create comprehensive test suites including:
 - **D**: 15-17 points (60-71%)
 - **F**: Below 15 points (<60%)
 
-## 🚀 Bonus Opportunities (+2 points max)
+## 🚀 Optional Challenge
 
-- **Machine Learning**: ML-based malware detection and classification
-- **Hypervisor Detection**: Virtual machine and sandbox evasion detection
-- **Advanced Visualization**: Interactive memory layout and process trees
-- **Real-time Analysis**: Streaming memory analysis capabilities
-- **Threat Intelligence**: Integration with external threat feeds
+**Advanced Memory Forensics**: Implement custom Volatility plugins for specialized artifact extraction, with focus on encrypted memory regions or advanced persistence mechanisms.
 
 ## 💡 Tips for Success
 
@@ -435,14 +389,9 @@ Create comprehensive test suites including:
 - Practical Malware Analysis (Michael Sikorski)
 - Rootkits and Bootkits (Alex Matrosov)
 
-### 🚨 IMPORTANT: Tool Access Issues
+### 🚨 IMPORTANT: Tool Access
 
-**If you encounter ANY issues accessing these tools** (installation problems, licensing concerns, broken links, etc.), **please contact the instructor IMMEDIATELY**. We will:
-- Provide alternative free tools
-- Update the assignment directions
-- Ensure no student faces barriers to completing the assignment
-
-**Do not struggle in silence** - reach out as soon as you encounter any access problems!
+**Volatility Framework**: Pre-installed and configured with necessary plugins. Memory dump samples provided for analysis. If you encounter installation issues, contact the instructor immediately for support.
 
 ---
 

@@ -558,7 +558,7 @@ if __name__ == '__main__':
 ### Component Breakdown
 
 | Component | Weight | Points |
-|-----------|---------|---------|
+|-----------|---------|----------|
 | **Log Management (ELK Stack)** | 20% | 20 points |
 | **Threat Detection** | 25% | 25 points |
 | **Security Dashboards** | 15% | 15 points |
@@ -568,52 +568,28 @@ if __name__ == '__main__':
 
 ### 5-Point Scale Criteria
 
-**Log Management (20 points)**
-- **Excellent (20)**: Complete ELK deployment, multi-source ingestion, advanced processing
-- **Proficient (16)**: Good ELK setup, basic log processing, most sources configured
-- **Developing (12)**: Basic ELK functionality, limited log sources
-- **Needs Improvement (8)**: ELK partially working, significant configuration issues
-- **Inadequate (4)**: Poor ELK setup, major functionality problems
-- **No Submission (0)**: Missing or no attempt
-
-**Threat Detection (25 points)**
-- **Excellent (25)**: Advanced detection rules, ML integration, behavioral analysis, correlation
-- **Proficient (20)**: Good detection capabilities, custom rules, basic correlation
-- **Developing (15)**: Basic detection rules, limited advanced features
-- **Needs Improvement (10)**: Simple detection, high false positive rate
-- **Inadequate (5)**: Poor detection capabilities, major gaps
-- **No Submission (0)**: Missing or no attempt
-
 **Security Dashboards (15 points)**
-- **Excellent (15)**: Comprehensive dashboards, excellent visualization, real-time updates
-- **Proficient (12)**: Good dashboards, adequate visualization
-- **Developing (9)**: Basic dashboards, limited functionality
-- **Needs Improvement (6)**: Simple dashboards, poor usability
-- **Inadequate (3)**: Minimal or non-functional dashboards
+- **Excellent (15)**: Professional dashboards, excellent visualizations, real-time updates, comprehensive security metrics
+- **Proficient (12)**: Good dashboards, adequate visualization, most security data displayed
+- **Developing (9)**: Basic dashboards, limited functionality, simple visualizations
+- **Needs Improvement (6)**: Simple dashboards, poor usability, missing key metrics
+- **Inadequate (3)**: Minimal or non-functional dashboards, major gaps
 - **No Submission (0)**: Missing or no attempt
 
-**Automated Alerting (10 points)**
-- **Excellent (10)**: Multi-tier alerting, correlation, automated response, escalation
-- **Proficient (8)**: Good alerting system, basic automation
-- **Developing (6)**: Basic alerting functionality
-- **Needs Improvement (4)**: Limited alerting capabilities
-- **Inadequate (2)**: Poor or no alerting
+**Dashboard Interface (5 points)**
+- **Excellent (5)**: Intuitive interface, seamless navigation, professional design, excellent user experience
+- **Proficient (4)**: Good interface, adequate navigation, decent design
+- **Developing (3)**: Basic interface, limited navigation, simple design
+- **Needs Improvement (2)**: Poor interface, confusing navigation, unprofessional appearance
+- **Inadequate (1)**: Broken interface, unusable navigation, major design flaws
 - **No Submission (0)**: Missing or no attempt
 
-**SOC Interface (20 points)**
-- **Excellent (20)**: Professional SOC interface, comprehensive features, excellent UX
-- **Proficient (16)**: Good SOC interface, most features functional
-- **Developing (12)**: Basic SOC interface, adequate functionality
-- **Needs Improvement (8)**: Limited interface features, poor usability
-- **Inadequate (4)**: Minimal or broken interface
-- **No Submission (0)**: Missing or no attempt
-
-**SOAR Integration (10 points)**
-- **Excellent (10)**: Full SOAR capabilities, playbook automation, orchestration
-- **Proficient (8)**: Good automation features, basic orchestration
-- **Developing (6)**: Basic automation capabilities
-- **Needs Improvement (4)**: Limited automation
-- **Inadequate (2)**: Minimal or no automation
+**Alert Management (5 points)**
+- **Excellent (5)**: Sophisticated alert system, effective prioritization, correlation, workflow management
+- **Proficient (4)**: Good alert management, basic prioritization, adequate workflow
+- **Developing (3)**: Simple alert handling, limited prioritization, basic functionality
+- **Needs Improvement (2)**: Poor alert management, weak prioritization, minimal functionality
+- **Inadequate (1)**: Broken alert system, no prioritization, unusable
 - **No Submission (0)**: Missing or no attempt
 
 ### Grade Scale
