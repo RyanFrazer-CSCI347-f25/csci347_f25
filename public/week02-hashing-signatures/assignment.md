@@ -1,202 +1,128 @@
-# Week 2 Assignment: Secure Document Signing System
+# Week 2 Assignment: Document Signature Verification (Simplified)
 
 **Due**: End of Week 2 (see Canvas for exact deadline)  
 **Points**: 25 points  
 **Submission**: Submit Pull Request URL to Canvas
+**Estimated Time**: 5 hours
 
 ## 🎯 Assignment Overview
 
-Build a command-line document signing and verification system that uses digital signatures to ensure document authenticity and integrity. Your implementation should demonstrate proper use of hashing, digital signatures, and file integrity monitoring techniques learned this week.
+Build a command-line tool that can verify digital signatures on documents. We'll provide pre-generated RSA keys and focus on understanding how signatures ensure document authenticity.
 
 ## 📋 Requirements
 
 ### Core Functionality (70 points)
 
-Your document signing system must implement these features:
+Your signature verification tool must implement:
 
-#### 1. Key Management (20 points)
-- **Generate RSA key pairs** (2048-bit minimum)
-- **Save keys securely** to PEM files
-- **Load existing keys** from files
-- **Password-protect private keys** (optional encryption)
+#### 1. Load Provided Keys (20 points)
+- **Load RSA keys** from provided PEM files
+- **Handle public and private keys**
+- **Basic error handling** for missing files
 
-#### 2. Document Signing Operations (25 points)
+#### 2. Document Operations (25 points)
 - **Sign documents**: `sign_document(filepath, private_key)`
 - **Verify signatures**: `verify_document(filepath, signature, public_key)`
-- **Batch signing**: Sign multiple documents at once
-- **Signature metadata**: Include timestamp, signer info
+- **Display verification results** clearly
 
-#### 3. Integrity Monitoring (25 points)
-- **Hash verification** before and after signing
-- **Tamper detection** for signed documents
-- **Signature database** tracking all signed documents
-- **Change detection** reporting modifications
+#### 3. Hash Verification (25 points)
+- **Calculate SHA-256 hashes** of documents
+- **Compare document hashes** to detect changes
+- **Report if document was modified** after signing
 
 ### Command-Line Interface (20 points)
 
-Implement a user-friendly CLI with these commands:
+Implement a simple CLI with these commands:
 
 ```bash
-# Generate new key pair
-python doc_signer.py generate-keys --name "John Doe"
-
 # Sign a document
-python doc_signer.py sign <document> --key private.pem
+python doc_signer.py sign <document>
 
 # Verify a signature
-python doc_signer.py verify <document> <signature> --key public.pem
+python doc_signer.py verify <document> <signature>
 
-# Check document integrity
-python doc_signer.py check <document>
-
-# List all signed documents
-python doc_signer.py list-signed
+# Check document hash
+python doc_signer.py hash <document>
 ```
 
 ### Security Features (10 points)
 
-- **Secure key storage** with proper permissions
-- **Timestamp inclusion** to prevent replay attacks
-- **Certificate chain support** (bonus)
-- **Audit logging** of all operations
+- **Proper signature verification**
+- **Clear error messages** for invalid signatures
+- **Basic input validation**
 
 ## 🔧 Technical Specifications
 
-### Required Libraries
+### Provided Starter Code and Keys
 ```python
-from cryptography.hazmat.primitives.asymmetric import rsa, padding
+# starter_code.py - Copy this into your doc_signer.py
 from cryptography.hazmat.primitives import hashes, serialization
+from cryptography.hazmat.primitives.asymmetric import padding, rsa
 import hashlib
-import hmac
 import json
 import os
-import sys
-from datetime import datetime
-from pathlib import Path
+
+# Pre-generated RSA keys (provided in keys/ directory)
+def load_private_key(filepath='keys/private_key.pem'):
+    """Load private key from PEM file"""
+    with open(filepath, 'rb') as f:
+        return serialization.load_pem_private_key(
+            f.read(), password=None
+        )
+
+def load_public_key(filepath='keys/public_key.pem'):
+    """Load public key from PEM file"""
+    with open(filepath, 'rb') as f:
+        return serialization.load_pem_public_key(f.read())
+
+def calculate_hash(filepath):
+    """Calculate SHA-256 hash of a file"""
+    sha256 = hashlib.sha256()
+    with open(filepath, 'rb') as f:
+        while chunk := f.read(8192):
+            sha256.update(chunk)
+    return sha256.hexdigest()
 ```
 
 ### File Structure
 ```
-doc_signer.py              # Main implementation
-signature_db.json          # Database of signed documents
-keys/                      # Directory for key storage
-  ├── private_key.pem
-  └── public_key.pem
+doc_signer.py              # Your implementation
+keys/                      # Provided keys
+  ├── private_key.pem      # Pre-generated private key
+  └── public_key.pem       # Pre-generated public key
 signatures/                # Directory for signature files
-  └── document.sig
-README.txt                 # Usage instructions and design notes
-requirements.txt           # Dependencies
+README.txt                 # Usage instructions
 ```
 
-### Data Format
+## 📝 Implementation Guide
 
-Design your signature format to include:
-- Document hash (SHA-256)
-- Digital signature
-- Timestamp
-- Signer identity
-- Algorithm used
+### 1. Use the Provided Functions
+The starter code provides key loading and hash calculation. Use these in your implementation.
 
-## 📝 Detailed Requirements
-
-### 1. Key Generation and Management
+### 2. Implement Core Functions
 ```python
-class KeyManager:
-    def generate_key_pair(self, key_size=2048):
-        """
-        Generate RSA key pair
-        
-        Args:
-            key_size (int): Key size in bits
-            
-        Returns:
-            tuple: (private_key, public_key)
-        """
-        # Generate RSA key pair
-        # Return both keys
+def sign_document(document_path):
+    """Sign a document using the private key"""
+    # Load private key using provided function
+    # Read document content
+    # Create signature using RSA with padding.PSS
+    # Save signature to file
     
-    def save_keys(self, private_key, public_key, password=None):
-        """
-        Save keys to PEM files
-        
-        Args:
-            private_key: RSA private key object
-            public_key: RSA public key object
-            password (str): Optional password for private key
-        """
-        # Save with appropriate encryption
-        # Set secure file permissions
+def verify_signature(document_path, signature_path):
+    """Verify a document's signature"""
+    # Load public key using provided function
+    # Read document and signature
+    # Verify using RSA
+    # Return True if valid, False otherwise
     
-    def load_private_key(self, filepath, password=None):
-        """Load private key from PEM file"""
-        # Load and decrypt if necessary
-        # Handle errors gracefully
+def check_hash(document_path, original_hash):
+    """Check if document has been modified"""
+    # Calculate current hash using provided function
+    # Compare with original hash
+    # Report if modified
 ```
 
-### 2. Document Signing
-```python
-class DocumentSigner:
-    def sign_document(self, document_path, private_key):
-        """
-        Sign a document with private key
-        
-        Args:
-            document_path (str): Path to document
-            private_key: RSA private key
-            
-        Returns:
-            dict: Signature package with metadata
-        """
-        # Calculate document hash
-        # Create signature
-        # Add metadata (timestamp, etc.)
-        # Save to signature file
-    
-    def verify_signature(self, document_path, signature_path, public_key):
-        """
-        Verify document signature
-        
-        Args:
-            document_path (str): Path to document
-            signature_path (str): Path to signature file
-            public_key: RSA public key
-            
-        Returns:
-            dict: Verification result with details
-        """
-        # Load signature package
-        # Verify document hash matches
-        # Verify signature with public key
-        # Check timestamp validity
-```
-
-### 3. Integrity Monitoring
-```python
-class IntegrityMonitor:
-    def __init__(self, database_file="signature_db.json"):
-        self.database_file = database_file
-        self.database = self.load_database()
-    
-    def add_signed_document(self, document_path, signature_info):
-        """Track signed document in database"""
-        # Store document hash
-        # Store signature metadata
-        # Record signing time
-    
-    def check_document_integrity(self, document_path):
-        """Check if document has been modified since signing"""
-        # Calculate current hash
-        # Compare with stored hash
-        # Report any changes
-    
-    def generate_audit_report(self):
-        """Generate report of all signed documents"""
-        # List all signed documents
-        # Show verification status
-        # Highlight any issues
-```
-
-### 4. Complete Implementation Example
+### 3. Simple Implementation Example
 
 ```python
 import argparse
@@ -291,88 +217,29 @@ $ python doc_signer.py check contract.pdf
    Last verified: 2024-01-15 14:35:00
 ```
 
-## 📊 Grading Rubric (100 Points Total)
+## 📊 Grading Rubric (25 Points Total)
 
 ### Component Breakdown
 
-| Component | Weight | Points |
+| Component | Points | Focus Area |
 |-----------|---------|---------|
-| **Key Management** | 20% | 20 points |
-| **Document Signing** | 25% | 25 points |
-| **Signature Verification** | 25% | 25 points |
-| **Integrity Monitoring** | 10% | 10 points |
-| **CLI Interface** | 10% | 10 points |
-| **Code Quality** | 10% | 10 points |
+| **Signature Creation** | 10 | Documents can be signed using private key |
+| **Signature Verification** | 10 | Signatures can be verified with public key |
+| **Tamper Detection** | 5 | Modified documents are detected |
 
-### Detailed Rubric
+### Grade Scale
+- **23-25 points (A)**: All features work correctly
+- **20-22 points (B)**: Most features work, minor issues
+- **18-19 points (C)**: Basic functionality works
+- **15-17 points (D)**: Some features work
+- **Below 15 points (F)**: Major problems
 
-**Key Management (20 points)**
-- Excellent (18-20): Secure key generation, proper storage, password protection
-- Good (14-17): Working key management, minor security issues
-- Satisfactory (10-13): Basic key operations work
-- Needs Improvement (0-9): Major issues with key handling
+## 🚀 Optional Challenge
 
-**Document Signing (25 points)**
-- Excellent (23-25): Perfect signing, metadata included, batch support
-- Good (18-22): Good signing functionality, most features work
-- Satisfactory (13-17): Basic signing works
-- Needs Improvement (0-12): Signing has significant issues
-
-**Signature Verification (25 points)**
-- Excellent (23-25): Comprehensive verification, tamper detection, clear reporting
-- Good (18-22): Good verification, handles most cases
-- Satisfactory (13-17): Basic verification works
-- Needs Improvement (0-12): Verification problems
-
-**Integrity Monitoring (10 points)**
-- Excellent (9-10): Complete tracking, change detection, audit reports
-- Good (7-8): Good monitoring, minor features missing
-- Satisfactory (5-6): Basic monitoring works
-- Needs Improvement (0-4): Limited or broken monitoring
-
-**CLI Interface (10 points)**
-- Excellent (9-10): All commands work, excellent UX, helpful output
-- Good (7-8): Most commands work, good usability
-- Satisfactory (5-6): Basic commands functional
-- Needs Improvement (0-4): Poor interface, commands don't work
-
-**Code Quality (10 points)**
-- Excellent (9-10): Clean, well-documented, follows best practices
-- Good (7-8): Good structure, adequate documentation
-- Satisfactory (5-6): Acceptable code quality
-- Needs Improvement (0-4): Poor code quality, no documentation
-
-## 🚀 Bonus Opportunities (+10 points each)
-
-### 1. Multi-Signature Support
-Allow documents to require multiple signatures:
-```python
-def add_signature(self, document, signature, signer_name):
-    """Add additional signature to document"""
-    # Support documents with multiple signers
-    # Track all signatures
-    # Verify threshold signatures
-```
-
-### 2. Certificate Chain Validation
-Implement basic PKI features:
-```python
-def validate_certificate_chain(self, certificate):
-    """Validate certificate against trusted roots"""
-    # Check certificate validity
-    # Verify chain of trust
-    # Handle revocation (basic)
-```
-
-### 3. Blockchain-Style Audit Log
-Create tamper-evident audit log:
-```python
-def create_audit_chain(self):
-    """Create blockchain-style audit log"""
-    # Chain audit entries with hashes
-    # Detect any tampering in log
-    # Provide cryptographic proof of order
-```
+If you finish early (no bonus points):
+- Add timestamp to signatures
+- Support multiple file formats
+- Create a signature validation report
 
 ## 📋 Submission Checklist
 

@@ -1,35 +1,32 @@
-# Week 15 Assignment: Capstone Security Operations Platform
+# Week 14 Assignment: Capstone Security Operations Platform
 
-**Due**: December 18  
+**Due**: End of Week 14 (see Canvas for exact deadline)  
 **Points**: 25 points  
+**Estimated Time**: 8 hours  
 **Submission**: Submit Pull Request URL to Canvas
 
 ## 🎯 Assignment Overview
 
-Create a comprehensive Security Operations Center (SOC) platform that integrates incident response, threat hunting, security orchestration, and operational dashboards. This capstone project demonstrates mastery of the entire cybersecurity and digital forensics curriculum by building a professional-grade platform that combines all course concepts into a cohesive security operations solution.
+Create focused incident response platform that demonstrates integration of core cybersecurity concepts from the course. This capstone assignment emphasizes incident response coordination using provided templates and simplified automation workflows.
 
 ## 📋 Learning Outcomes
 
 This capstone assignment assesses your ability to:
 
-1. **Incident Response Integration** (5 points)
-2. **Threat Hunting & Detection** (5 points)
-3. **Security Orchestration & Automation** (5 points)
-4. **Operational Dashboards & Metrics** (5 points)
-5. **Comprehensive Integration & Documentation** (5 points)
+1. **Incident Response Coordination** (15 points)
+2. **Security Integration & Automation** (5 points)
+3. **Professional Documentation** (5 points)
 
 ## 🔧 Technical Requirements
 
 ### Required Implementation
-Build a comprehensive SOC platform integrating all course concepts:
+Build focused incident response platform:
 
 ```python
 # Core platform modules
-incident_manager.py     # NIST-aligned incident response system
-threat_hunter.py        # Proactive threat hunting engine  
-soar_platform.py        # Security orchestration and automation
-soc_dashboard.py        # Executive and operational dashboards
-integration_engine.py   # Cross-platform integration and correlation
+incident_coordinator.py  # NIST-aligned incident response workflows
+automation_engine.py     # Basic security automation and notifications
+reporting_system.py      # Incident reporting and documentation
 ```
 
 ### Required Libraries
@@ -50,113 +47,62 @@ from concurrent.futures import ThreadPoolExecutor
 
 ## 📝 Detailed Requirements
 
-### 1. Incident Response Integration (5 points)
+### 1. Incident Response Coordination (15 points)
 
-Implement comprehensive incident response capabilities:
-
-**Required Features:**
-- **NIST IR lifecycle** implementation (Preparation, Detection, Containment, Eradication, Recovery)
-- **Evidence management** with chain of custody tracking
-- **Playbook execution** with automated and manual steps  
-- **Stakeholder notification** with escalation matrices
-- **Forensics integration** for evidence collection and analysis
-
-**Deliverable:** `incident_manager.py` with complete IR workflow automation
-
-### 2. Threat Hunting & Detection (5 points)
-
-Create advanced threat hunting and detection systems:
+**Focus Area: NIST-Aligned Incident Response with Course Concept Integration**
 
 **Required Features:**
-- **Hypothesis-driven** hunting with MITRE ATT&CK mapping
-- **Behavioral analytics** for anomaly detection
-- **IOC management** with threat intelligence feeds
-- **Hunt result** correlation and false positive reduction
-- **Proactive detection** rules and signature management
+- **NIST IR lifecycle** implementation (Preparation, Detection, Containment, Eradication, Recovery) with provided templates
+- **Evidence management** with basic chain of custody tracking
+- **Stakeholder notification** system with escalation workflows
+- **Integration touchpoints** with course security concepts (PKI validation, MFA verification, network analysis, forensics collection)
+- **Incident classification** and priority assignment based on business impact
+- **Basic automation** for routine incident response tasks
 
-**Deliverable:** `threat_hunter.py` with comprehensive hunting capabilities
+**Deliverable:** `incident_coordinator.py` with NIST-aligned IR workflows
 
-### 3. Security Orchestration & Automation (5 points)
+*Note: Incident response templates and playbooks provided*
 
-Build SOAR platform with automation capabilities:
-
-**Required Features:**
-- **Playbook engine** for automated response workflows
-- **Tool integration** simulation (EDR, SIEM, firewall, email)
-- **Decision trees** for complex automated responses
-- **Human approval** workflows for critical actions
-- **Action tracking** and audit logging
-
-**Deliverable:** `soar_platform.py` with workflow automation
-
-### 4. Operational Dashboards & Metrics (5 points)
-
-Develop comprehensive SOC dashboards:
+### 2. Security Integration & Automation (5 points)
 
 **Required Features:**
-- **Executive dashboard** with business risk metrics and KPIs
-- **Analyst dashboard** with operational metrics and queue management
-- **Real-time alerting** with threshold monitoring
-- **Trend analysis** with historical data visualization
-- **Custom reporting** for different stakeholder audiences
+- **Basic automation** for security tool coordination (simulated integrations)
+- **Notification system** for stakeholder alerts and updates
+- **Simple workflow** automation for common incident response actions
+- **Status tracking** and progress monitoring for active incidents
 
-**Deliverable:** `soc_dashboard.py` with web-based visualization
+**Deliverable:** `automation_engine.py` with basic security automation
 
-### 5. Comprehensive Integration & Documentation (5 points)
-
-Create professional integration and documentation:
+### 3. Professional Documentation (5 points)
 
 **Required Features:**
-- **API integration** between all platform components
-- **Data correlation** across incident response, hunting, and automation
-- **Professional documentation** including architecture diagrams
-- **Deployment guide** with installation and configuration
-- **User training** materials and operational procedures
+- **System architecture** documentation with component relationships
+- **User guide** for incident response coordinators
+- **Integration guide** showing course concept touchpoints
+- **Deployment instructions** with setup procedures
 
-**Deliverable:** Complete integration with professional documentation suite
+**Deliverable:** `reporting_system.py` with comprehensive documentation generation
 
 ## 💻 Implementation Guidelines
 
 ### Platform Architecture
 ```
-soc_platform/
+incident_response_platform/
 ├── src/
-│   ├── core/
-│   │   ├── incident_manager.py
-│   │   ├── threat_hunter.py
-│   │   ├── soar_platform.py
-│   │   ├── soc_dashboard.py
-│   │   └── integration_engine.py
-│   ├── modules/
-│   │   ├── forensics/
-│   │   ├── crypto/
-│   │   ├── network_security/
-│   │   └── mobile_forensics/
-│   ├── web/
-│   │   ├── app.py
-│   │   ├── templates/
-│   │   └── static/
-│   └── api/
-│       ├── rest_api.py
-│       └── webhooks.py
+│   ├── incident_coordinator.py   # Main incident response coordination
+│   ├── automation_engine.py      # Basic security automation
+│   └── reporting_system.py       # Documentation and reporting
+├── templates/
+│   ├── incident_response_playbooks/  # Provided NIST IR templates
+│   ├── notification_templates/      # Alert and update templates
+│   └── documentation_templates/     # Report and guide templates
 ├── data/
-│   ├── incidents.db
-│   ├── threats.db
-│   ├── playbooks.json
-│   └── metrics.db
-├── config/
-│   ├── settings.yml
-│   ├── playbooks/
-│   └── rules/
+│   ├── incidents.db              # Incident tracking database
+│   └── stakeholders.json         # Contact and escalation info
 ├── docs/
-│   ├── architecture.md
-│   ├── deployment.md
-│   ├── user_guide.md
-│   └── api_reference.md
-├── tests/
-│   ├── unit/
-│   ├── integration/
-│   └── e2e/
+│   ├── system_architecture.md    # Platform architecture
+│   ├── user_guide.md             # Usage instructions
+│   └── course_integration.md     # How platform integrates course concepts
 └── README.md
 ```
 
@@ -464,42 +410,39 @@ Create realistic scenarios including:
 
 ## 📊 Grading Rubric (25 Points Total)
 
+### Component Breakdown
+
+| Component | Weight | Points |
+|-----------|---------|-------|
+| **Incident Response Coordination** | 60% | 15 points |
+| **Security Integration & Automation** | 20% | 5 points |
+| **Professional Documentation** | 20% | 5 points |
+
 ### 5-Point Scale Criteria
 
-**Incident Response Integration (5 points)**
-- **Excellent (5)**: Complete NIST IR implementation, comprehensive evidence management, sophisticated playbooks, seamless forensics integration
-- **Proficient (4)**: Good IR workflow, adequate evidence handling, functional playbooks, basic forensics integration
-- **Developing (3)**: Basic IR functionality, simple evidence tracking, limited playbooks
-- **Needs Improvement (2)**: Incomplete IR implementation, poor evidence handling, weak integration
-- **Inadequate (1)**: Minimal IR capabilities, major functionality gaps
+**Incident Response Coordination (15 points)**
+- **Excellent (15)**: Complete NIST IR lifecycle implementation, comprehensive evidence management, effective stakeholder notification, clear course concept integration, proper incident classification, reliable automation
+- **Proficient (12)**: Good IR workflow, adequate evidence handling, functional notifications, basic course integration, reasonable classification
+- **Developing (9)**: Basic IR functionality, simple evidence tracking, limited notifications, minimal integration, basic classification
+- **Needs Improvement (6)**: Incomplete IR implementation, poor evidence handling, weak notifications, no clear integration
+- **Inadequate (3)**: Minimal IR capabilities, major functionality gaps, broken workflows
+- **No Submission (0)**: Missing or no attempt
 
-**Threat Hunting & Detection (5 points)**
-- **Excellent (5)**: Advanced hunting capabilities, comprehensive MITRE mapping, sophisticated analytics, effective IOC management
-- **Proficient (4)**: Good hunting functionality, adequate technique mapping, reasonable analytics
-- **Developing (3)**: Basic hunting capabilities, limited mapping, simple analytics
-- **Needs Improvement (2)**: Poor hunting functionality, weak analytics, minimal mapping
-- **Inadequate (1)**: Inadequate hunting capabilities, major detection gaps
-
-**Security Orchestration & Automation (5 points)**
-- **Excellent (5)**: Comprehensive SOAR implementation, sophisticated playbooks, extensive tool integration, reliable automation
-- **Proficient (4)**: Good automation capabilities, functional playbooks, basic tool integration
-- **Developing (3)**: Simple automation, limited playbooks, basic functionality
-- **Needs Improvement (2)**: Poor automation quality, weak playbooks, integration issues
+**Security Integration & Automation (5 points)**
+- **Excellent (5)**: Effective security automation, comprehensive notification system, reliable workflows, proper status tracking, good tool coordination
+- **Proficient (4)**: Good automation capabilities, adequate notifications, functional workflows, basic tracking
+- **Developing (3)**: Simple automation, limited notifications, basic workflows, minimal tracking
+- **Needs Improvement (2)**: Poor automation quality, weak notifications, unreliable workflows
 - **Inadequate (1)**: Minimal automation capabilities, major reliability issues
+- **No Submission (0)**: Missing or no attempt
 
-**Operational Dashboards & Metrics (5 points)**
-- **Excellent (5)**: Professional dashboards, comprehensive metrics, excellent visualizations, real-time updates, role-based views
-- **Proficient (4)**: Good dashboards, adequate metrics, decent visualizations, basic role support
-- **Developing (3)**: Simple dashboards, limited metrics, basic visualizations
-- **Needs Improvement (2)**: Poor dashboard quality, inadequate metrics, weak visualizations
-- **Inadequate (1)**: Unprofessional dashboards, major functionality gaps
-
-**Comprehensive Integration & Documentation (5 points)**
-- **Excellent (5)**: Seamless integration, comprehensive documentation, professional presentation, excellent user guides, complete API docs
-- **Proficient (4)**: Good integration, adequate documentation, decent presentation, basic guides
-- **Developing (3)**: Basic integration, limited documentation, simple presentation
-- **Needs Improvement (2)**: Poor integration quality, inadequate documentation, weak presentation
-- **Inadequate (1)**: Major integration failures, minimal documentation, unprofessional presentation
+**Professional Documentation (5 points)**
+- **Excellent (5)**: Comprehensive system architecture, excellent user guides, clear integration explanations, detailed deployment instructions, professional presentation
+- **Proficient (4)**: Good documentation, adequate guides, reasonable explanations, basic deployment info
+- **Developing (3)**: Basic documentation, limited guides, simple explanations, minimal deployment info
+- **Needs Improvement (2)**: Poor documentation quality, inadequate guides, unclear explanations
+- **Inadequate (1)**: Minimal documentation, unprofessional presentation, major gaps
+- **No Submission (0)**: Missing or no attempt
 
 ### Grade Scale:
 - **A**: 23-25 points (92-100%)
@@ -508,13 +451,9 @@ Create realistic scenarios including:
 - **D**: 15-17 points (60-71%)
 - **F**: Below 15 points (<60%)
 
-## 🚀 Bonus Opportunities (+3 points max)
+## 🚀 Optional Challenge
 
-- **Machine Learning**: AI-powered threat detection and incident classification
-- **Mobile Integration**: Mobile app for SOC analysts with push notifications
-- **Advanced Visualization**: 3D network topology and attack visualization
-- **Cloud Deployment**: Containerized deployment with orchestration
-- **Threat Intelligence**: Integration with external threat feeds and sharing
+**Advanced Integration**: Implement real-time integration with one course security concept (e.g., automated PKI certificate validation during incidents, or MFA verification for incident access), with detailed documentation of the integration architecture.
 
 ## 💡 Tips for Success
 
@@ -536,4 +475,4 @@ Create realistic scenarios including:
 
 ---
 
-**Congratulations on completing CSCI 347! Build an amazing capstone that showcases everything you've learned!** 🎓🔒🚀
+**Congratulations on completing CSCI 347! Build a focused capstone that demonstrates your incident response and security integration skills!** 🎓🔒

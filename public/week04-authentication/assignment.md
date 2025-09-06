@@ -343,22 +343,19 @@ python mfa_system.py
 ### Component Breakdown
 
 | Component | Weight | Points |
-|-----------|---------|---------|
+|-----------|---------|----------|
 | **MFA Implementation** | 60% | 15 points |
 | **Web Interface** | 20% | 5 points |
 | **Security Practices** | 20% | 5 points |
 
-### 🎯 Project 1 Preparation Quality Bonus
-**Additional consideration**: Assignments demonstrating clear preparation for Project 1 enterprise requirements receive priority support and feedback for project success.
-
 ### 5-Point Scale Criteria
 
-**MFA Implementation (15 points)**
-- **Excellent (15)**: Perfect TOTP implementation, backup codes, QR generation, session management, risk assessment
-- **Proficient (12)**: Good MFA functionality with most security features working
-- **Developing (9)**: Basic MFA works, some advanced features missing
-- **Needs Improvement (6)**: MFA partially functional, significant gaps
-- **Inadequate (3)**: MFA doesn't work properly or major security flaws
+**TOTP Implementation (15 points)**
+- **Excellent (15)**: Perfect TOTP implementation, QR codes, backup codes, proper time windows, rate limiting
+- **Proficient (12)**: Good TOTP functionality with most security features working
+- **Developing (9)**: Basic TOTP works, some security features missing
+- **Needs Improvement (6)**: TOTP partially functional, significant gaps
+- **Inadequate (3)**: TOTP doesn't work properly or major security flaws
 - **No Submission (0)**: Missing or no attempt
 
 **Web Interface (5 points)**
@@ -370,72 +367,38 @@ python mfa_system.py
 - **No Submission (0)**: Missing or no attempt
 
 **Security Practices (5 points)**
-- **Excellent (5)**: Comprehensive security implementation, CSRF protection, input validation
-- **Proficient (4)**: Good security practices, minor vulnerabilities
-- **Developing (3)**: Basic security considerations
-- **Needs Improvement (2)**: Limited security practices
-- **Inadequate (1)**: Poor security implementation
+- **Excellent (5)**: Proper TOTP security, rate limiting, replay protection, input validation
+- **Proficient (4)**: Good TOTP security practices, minor vulnerabilities
+- **Developing (3)**: Basic TOTP security considerations
+- **Needs Improvement (2)**: Limited TOTP security practices
+- **Inadequate (1)**: Poor TOTP security implementation
 - **No Submission (0)**: Missing or no attempt
 
 ### Grade Scale
-- **23-25 points (A)**: Excellent MFA foundation ready for Project 1 extension
-- **20-22 points (B)**: Good implementation with minor enhancements needed
-- **18-19 points (C)**: Satisfactory foundation, requires significant Project 1 development
-- **15-17 points (D)**: Basic functionality, needs substantial improvement for Project 1
-- **Below 15 points (F)**: Inadequate foundation for Project 1 success
+- **23-25 points (A)**: Excellent TOTP implementation with strong security
+- **20-22 points (B)**: Good TOTP implementation with minor issues
+- **18-19 points (C)**: Satisfactory TOTP functionality
+- **15-17 points (D)**: Basic TOTP functionality, security concerns
+- **Below 15 points (F)**: Inadequate TOTP implementation
 
-## 🚀 Project 1 Preparation Bonuses (No additional points, but valuable feedback)
+## 🚀 Optional Challenge
 
-**These features won't add points to this assignment but will receive detailed feedback to help with Project 1:**
-
-### 1. Biometric Authentication Simulation
-Simulate fingerprint/face recognition:
-```python
-def simulate_biometric_auth(user_id, biometric_data):
-    """Simulate biometric authentication with fuzzy matching"""
-    # Implement template matching simulation
-    # Add noise tolerance for realistic behavior
-```
-
-### 2. Push Notification MFA
-Implement push-based authentication:
-```python
-def send_push_notification(user_id, device_token):
-    """Send push notification for authentication approval"""
-    # Generate authentication request
-    # Send via push notification service
-```
-
-### 3. Advanced Risk Analytics
-Add machine learning-style risk assessment:
-```python
-def ml_risk_assessment(user_behavior_data):
-    """Use behavioral patterns for risk assessment"""
-    # Analyze login patterns, typing speed, mouse movements
-    # Generate risk score based on behavioral biometrics
-```
+**Advanced TOTP Features**: Implement TOTP with different time periods (15, 30, 60 seconds), support for 6 and 8-digit codes, and tolerance for clock drift. Document the security trade-offs of each configuration.
 
 ## 📋 Submission Checklist
 
 Before submitting, verify:
 
-**Core MFA Functionality:**
-- [ ] **User registration and MFA setup work correctly**
+**Core TOTP Functionality:**
+- [ ] **TOTP setup and QR code generation work correctly**
 - [ ] **TOTP authentication functions properly with authenticator apps**
-- [ ] **Session management provides secure authentication state**
-- [ ] **Risk assessment considers multiple factors**
-- [ ] **All web pages render and function correctly**
-- [ ] **Database operations handle errors gracefully**
-- [ ] **Security measures protect against common attacks**
+- [ ] **Backup codes generation and validation work**
+- [ ] **Rate limiting prevents brute force attacks**
+- [ ] **Web interface allows TOTP setup and verification**
+- [ ] **Token validation handles time windows correctly**
+- [ ] **Security measures protect against replay attacks**
 - [ ] **Code is well-structured and documented**
-- [ ] **README.txt explains setup and security design**
-
-**Project 1 Preparation:**
-- [ ] **Database schema supports enterprise features (user management, audit logs)**
-- [ ] **Authentication engine is modular and extensible**
-- [ ] **Security framework can scale to administrative controls**
-- [ ] **Code architecture supports additional authentication factors**
-- [ ] **Documentation includes expansion notes for Project 1**
+- [ ] **README.txt explains TOTP implementation**
 
 ### Testing Your MFA System
 ```bash

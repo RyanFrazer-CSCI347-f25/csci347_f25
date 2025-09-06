@@ -90,22 +90,41 @@ You'll use these industry-standard tools:
 - **Nikto** - Web server vulnerability scanner
 - **Custom Python scripts** - For report automation
 
-## 📋 Grading Rubric
+## 📊 Grading Rubric (25 Points Total)
 
-### Technical Assessment Skills (70 points)
-- **Vulnerability Discovery (25 pts)**: Effective tool usage, comprehensive coverage
-- **Configuration Analysis (25 pts)**: Security gap identification, policy review
-- **Risk Analysis (20 pts)**: Appropriate scoring, business context, prioritization
+### Component Breakdown
 
-### Professional Communication (20 points)
-- **Executive summaries** appropriate for management
-- **Technical documentation** suitable for security teams
-- **Remediation guidance** with clear action items
+| Component | Weight | Points |
+|-----------|---------|-------|
+| **Risk Assessment** | 60% | 15 points |
+| **Professional Documentation** | 20% | 5 points |
+| **Risk Communication** | 20% | 5 points |
 
-### Methodology & Process (10 points)
-- **Systematic approach** following industry frameworks
-- **Ethical considerations** and responsible disclosure
-- **Documentation quality** enabling reproducible assessments
+### 5-Point Scale Criteria
+
+**Risk Assessment (15 points)**
+- **Excellent (15)**: Accurate CVSS scoring, thorough business impact analysis, realistic prioritization, professional remediation roadmap
+- **Proficient (12)**: Good risk analysis, adequate business context, reasonable prioritization, solid recommendations
+- **Developing (9)**: Basic risk assessment, limited business context, simple prioritization, basic recommendations
+- **Needs Improvement (6)**: Poor risk analysis, weak business understanding, unrealistic prioritization, inadequate recommendations
+- **Inadequate (3)**: Major assessment flaws, no business context, poor recommendations, unprofessional quality
+- **No Submission (0)**: Missing or no attempt
+
+**Professional Documentation (5 points)**
+- **Excellent (5)**: Comprehensive report, clear structure, executive summary, detailed technical findings, professional presentation
+- **Proficient (4)**: Good report structure, adequate summaries, decent technical detail
+- **Developing (3)**: Basic report, limited structure, simple findings
+- **Needs Improvement (2)**: Poor documentation, confusing structure, inadequate detail
+- **Inadequate (1)**: Unprofessional documentation, major structural problems, minimal content
+- **No Submission (0)**: Missing or no attempt
+
+**Risk Communication (5 points)**
+- **Excellent (5)**: Clear executive communication, actionable technical guidance, effective risk visualization, appropriate audience targeting
+- **Proficient (4)**: Good communication, adequate guidance, reasonable visualization
+- **Developing (3)**: Basic communication, limited guidance, simple visualization
+- **Needs Improvement (2)**: Poor communication, weak guidance, inadequate visualization
+- **Inadequate (1)**: Ineffective communication, no clear guidance, unusable visualization
+- **No Submission (0)**: Missing or no attempt
 
 ## 🔍 Self-Assessment Questions
 

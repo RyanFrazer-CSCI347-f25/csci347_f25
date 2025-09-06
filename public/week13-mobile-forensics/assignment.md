@@ -2,34 +2,31 @@
 
 **Due**: End of Week 13 (see Canvas for exact deadline)  
 **Points**: 25 points  
+**Estimated Time**: 6 hours  
 **Submission**: Submit Pull Request URL to Canvas
 
 ## 🎯 Assignment Overview
 
-Develop a comprehensive mobile device and cloud forensics platform capable of analyzing Android and iOS devices, extracting application data, investigating cloud storage synchronization, and correlating evidence across multiple platforms. Your solution should demonstrate understanding of mobile security models, cloud forensics challenges, and cross-platform investigation techniques.
+Build focused mobile forensics analysis tools using provided mobile data extracts and pre-built parsing frameworks. This assignment emphasizes practical mobile forensics skills using existing tools and provided mobile device data samples.
 
 ## 📋 Learning Outcomes
 
 This assignment assesses your ability to:
 
-1. **Mobile Device Analysis** (5 points)
-2. **Application Data Extraction** (5 points)
-3. **Cloud Storage Investigation** (5 points)
-4. **Cross-Platform Correlation** (5 points)
-5. **Mobile Forensics Reporting** (5 points)
+1. **Mobile Data Analysis** (15 points) - Choose Android OR iOS
+2. **Application Artifact Analysis** (5 points)
+3. **Mobile Forensics Reporting** (5 points)
 
 ## 🔧 Technical Requirements
 
 ### Required Implementation
-Build a Python-based mobile forensics platform:
+Build focused mobile analysis tools (choose Android OR iOS):
 
 ```python
 # Core modules to implement
-android_analyzer.py     # Android device and app analysis
-ios_analyzer.py         # iOS device and backup analysis
-cloud_investigator.py   # Cloud storage and sync analysis
-mobile_correlator.py    # Cross-platform evidence correlation
-forensics_reporter.py   # Mobile-specific report generation
+mobile_analyzer.py      # Android OR iOS data analysis
+app_artifact_parser.py  # Application artifact extraction
+forensics_reporter.py   # Mobile forensics reporting
 ```
 
 ### Required Libraries
@@ -49,68 +46,47 @@ from pathlib import Path
 
 ## 📝 Detailed Requirements
 
-### 1. Mobile Device Analysis (5 points)
+### 1. Mobile Data Analysis - Choose Android OR iOS (15 points)
 
-Implement comprehensive mobile device examination:
+**Focus Area: Single Platform Deep Analysis Using Provided Data**
+
+#### Option A: Android Analysis
+**Required Features:**
+- **SQLite database** parsing for system and app data using provided extracts
+- **Shared preferences** analysis from Android applications
+- **Communication analysis** (SMS, call logs, contacts) using provided databases
+- **Application data** extraction from provided app data directories
+- **Timeline construction** from Android system artifacts
+
+#### Option B: iOS Analysis  
+**Required Features:**
+- **Plist file analysis** using provided iOS backup data
+- **SQLite database** parsing for iOS system and app data
+- **Communication analysis** from iOS message and call databases
+- **Application artifact** extraction from iOS backup structures
+- **Timeline construction** from iOS system artifacts
+
+**Deliverable:** `mobile_analyzer.py` with chosen platform analysis
+
+*Note: Mobile device data extracts provided for both Android and iOS platforms*
+
+### 2. Application Artifact Analysis (5 points)
 
 **Required Features:**
-- **Android analysis** including SQLite databases, shared preferences, and app data
-- **iOS analysis** including plist files, keychain items, and backup structures
-- **Device information** extraction (IMEI, serial numbers, OS versions)
-- **Communication analysis** (SMS, call logs, contacts with timeline)
-- **Location data** extraction and mapping
+- **Popular app analysis** (WhatsApp, browser data, social media) from provided extracts
+- **Database parsing** for application-specific data structures
+- **Media file** analysis and metadata extraction
+- **User activity** reconstruction from application artifacts
 
-**Deliverable:** `android_analyzer.py` and `ios_analyzer.py` with device analysis capabilities
+**Deliverable:** `app_artifact_parser.py` with application-specific parsing
 
-### 2. Application Data Extraction (5 points)
-
-Create sophisticated app data analysis tools:
+### 3. Mobile Forensics Reporting (5 points)
 
 **Required Features:**
-- **Social media** artifact extraction (messages, photos, contacts)
-- **Messaging app** analysis (WhatsApp, Telegram, Signal simulation)
-- **Browser history** and cache analysis across multiple browsers
-- **Email client** data extraction and analysis
-- **Financial app** transaction and account data recovery
-
-**Deliverable:** App-specific analyzers with data extraction and parsing
-
-### 3. Cloud Storage Investigation (5 points)
-
-Build cloud forensics investigation capabilities:
-
-**Required Features:**
-- **Cloud sync** analysis (iCloud, Google Drive, Dropbox, OneDrive)
-- **File synchronization** timeline and conflict resolution
-- **Shared folder** and collaboration analysis
-- **Cloud backup** examination and recovery
-- **Cross-device** synchronization pattern analysis
-
-**Deliverable:** `cloud_investigator.py` with multi-platform cloud analysis
-
-### 4. Cross-Platform Correlation (5 points)
-
-Implement evidence correlation across mobile and cloud platforms:
-
-**Required Features:**
-- **Account linking** across platforms and services
-- **Timeline correlation** between device and cloud activities
-- **Data consistency** verification across platforms
-- **Communication correlation** across different apps and services
-- **Behavioral pattern** analysis across multiple data sources
-
-**Deliverable:** `mobile_correlator.py` with sophisticated correlation algorithms
-
-### 5. Mobile Forensics Reporting (5 points)
-
-Generate comprehensive mobile forensics reports:
-
-**Required Features:**
-- **Executive summary** with key findings and impact
-- **Technical analysis** with detailed evidence presentation
-- **Timeline visualization** with multi-source event correlation
-- **Communication analysis** with contact networks and patterns
-- **Privacy assessment** and data exposure analysis
+- **Executive summary** with key mobile forensics findings
+- **Technical analysis** with detailed artifact analysis
+- **Timeline presentation** showing user activities and communications
+- **Privacy impact** assessment from extracted personal data
 
 **Deliverable:** `forensics_reporter.py` with mobile-specific reporting
 
@@ -119,32 +95,24 @@ Generate comprehensive mobile forensics reports:
 ### System Architecture
 ```
 ├── src/
-│   ├── android_analyzer.py
-│   ├── ios_analyzer.py
-│   ├── cloud_investigator.py
-│   ├── mobile_correlator.py
-│   ├── forensics_reporter.py
-│   └── app_analyzers/
-│       ├── whatsapp_analyzer.py
-│       ├── browser_analyzer.py
-│       ├── social_media_analyzer.py
-│       └── email_analyzer.py
+│   ├── mobile_analyzer.py        # Android OR iOS analysis
+│   ├── app_artifact_parser.py    # Application-specific parsing
+│   └── forensics_reporter.py     # Mobile forensics reporting
 ├── data/
-│   ├── android_samples/
+│   ├── android_samples/          # Provided Android extracts
 │   │   ├── contacts.db
 │   │   ├── sms.db
-│   │   └── app_data/
-│   ├── ios_samples/
-│   │   ├── manifest.plist
-│   │   ├── info.plist
-│   │   └── backup_files/
-│   └── cloud_samples/
-│       ├── sync_logs/
-│       └── shared_folders/
+│   │   ├── whatsapp_msgstore.db
+│   │   └── browser_history.db
+│   └── ios_samples/              # Provided iOS backup extracts
+│       ├── manifest.plist
+│       ├── sms.db
+│       ├── contacts.sqlitedb
+│       └── safari_history.db
 ├── reports/
-│   ├── mobile_investigation.html
-│   ├── timeline_analysis.pdf
-│   └── privacy_assessment.json
+│   ├── mobile_forensics_report.html
+│   ├── timeline_analysis.json
+│   └── privacy_assessment.md
 └── README.md
 ```
 
@@ -440,42 +408,39 @@ Create comprehensive test scenarios including:
 
 ## 📊 Grading Rubric (25 Points Total)
 
+### Component Breakdown
+
+| Component | Weight | Points |
+|-----------|---------|-------|
+| **Mobile Data Analysis** | 60% | 15 points |
+| **Application Artifact Analysis** | 20% | 5 points |
+| **Mobile Forensics Reporting** | 20% | 5 points |
+
 ### 5-Point Scale Criteria
 
-**Mobile Device Analysis (5 points)**
-- **Excellent (5)**: Comprehensive Android/iOS analysis, accurate database parsing, complete communication extraction, location analysis
-- **Proficient (4)**: Good mobile analysis, adequate database handling, basic communication extraction
-- **Developing (3)**: Simple mobile parsing, limited database analysis, basic functionality
-- **Needs Improvement (2)**: Poor mobile analysis, significant limitations, accuracy issues
-- **Inadequate (1)**: Minimal mobile capabilities, major functionality gaps
+**Mobile Data Analysis (15 points)**
+- **Excellent (15)**: Comprehensive platform analysis (Android OR iOS), accurate database parsing, complete communication extraction, thorough application data analysis, professional timeline construction
+- **Proficient (12)**: Good platform analysis, adequate database handling, reasonable communication extraction, basic timeline
+- **Developing (9)**: Simple platform analysis, limited database parsing, minimal communication extraction, basic timeline
+- **Needs Improvement (6)**: Poor platform analysis, weak database handling, inadequate extraction, incomplete timeline
+- **Inadequate (3)**: Minimal platform capabilities, major functionality gaps, broken analysis
+- **No Submission (0)**: Missing or no attempt
 
-**Application Data Extraction (5 points)**
-- **Excellent (5)**: Sophisticated app analysis, comprehensive data extraction, multiple app support, high accuracy
-- **Proficient (4)**: Good app analysis, adequate extraction, reasonable app coverage
-- **Developing (3)**: Basic app analysis, limited extraction, few apps supported
-- **Needs Improvement (2)**: Poor app analysis, weak extraction, significant limitations
-- **Inadequate (1)**: Minimal app support, major extraction failures
-
-**Cloud Storage Investigation (5 points)**
-- **Excellent (5)**: Advanced cloud analysis, comprehensive sync investigation, multi-platform support, sharing analysis
-- **Proficient (4)**: Good cloud investigation, adequate sync analysis, basic sharing detection
-- **Developing (3)**: Simple cloud analysis, limited sync investigation, basic functionality
-- **Needs Improvement (2)**: Poor cloud analysis, weak sync investigation, significant gaps
-- **Inadequate (1)**: Minimal cloud capabilities, major investigation gaps
-
-**Cross-Platform Correlation (5 points)**
-- **Excellent (5)**: Advanced correlation algorithms, comprehensive account linking, accurate timeline correlation, behavioral analysis
-- **Proficient (4)**: Good correlation capabilities, adequate linking, reasonable accuracy
-- **Developing (3)**: Basic correlation, limited linking, simple functionality
-- **Needs Improvement (2)**: Poor correlation quality, weak linking, low accuracy
-- **Inadequate (1)**: Minimal correlation capabilities, major accuracy issues
+**Application Artifact Analysis (5 points)**
+- **Excellent (5)**: Sophisticated application analysis, comprehensive artifact extraction, multiple app support, accurate parsing, meaningful insights
+- **Proficient (4)**: Good application analysis, adequate extraction, reasonable app coverage, decent parsing
+- **Developing (3)**: Basic application analysis, limited extraction, few apps supported, simple parsing
+- **Needs Improvement (2)**: Poor application analysis, weak extraction, significant parsing limitations
+- **Inadequate (1)**: Minimal application support, major extraction failures, broken parsing
+- **No Submission (0)**: Missing or no attempt
 
 **Mobile Forensics Reporting (5 points)**
-- **Excellent (5)**: Professional reports, comprehensive analysis, excellent visualizations, privacy assessments, executive summaries
-- **Proficient (4)**: Good reports, adequate analysis, decent visualizations, basic privacy notes
-- **Developing (3)**: Basic reports, limited analysis, simple visualizations
-- **Needs Improvement (2)**: Poor report quality, inadequate analysis, weak visualizations
-- **Inadequate (1)**: Unprofessional reports, major gaps in analysis and presentation
+- **Excellent (5)**: Professional reports, comprehensive executive summary, detailed technical analysis, excellent timeline presentation, thorough privacy assessment
+- **Proficient (4)**: Good reports, adequate summaries, decent technical detail, basic timeline, reasonable privacy notes
+- **Developing (3)**: Basic reports, limited structure, simple findings, minimal timeline, basic privacy assessment
+- **Needs Improvement (2)**: Poor report quality, inadequate structure, weak findings, incomplete timeline, minimal privacy analysis
+- **Inadequate (1)**: Unprofessional reports, major gaps, unusable analysis, no privacy consideration
+- **No Submission (0)**: Missing or no attempt
 
 ### Grade Scale:
 - **A**: 23-25 points (92-100%)
@@ -484,13 +449,9 @@ Create comprehensive test scenarios including:
 - **D**: 15-17 points (60-71%)
 - **F**: Below 15 points (<60%)
 
-## 🚀 Bonus Opportunities (+2 points max)
+## 🚀 Optional Challenge
 
-- **Advanced Encryption**: Handle encrypted mobile databases and keychain analysis
-- **Real-time Monitoring**: Live mobile device monitoring capabilities
-- **Machine Learning**: Behavioral pattern recognition using ML
-- **Privacy Dashboard**: Comprehensive privacy exposure visualization
-- **Legal Compliance**: GDPR/CCPA compliance checking for extracted data
+**Advanced Mobile Forensics**: Implement parsing for encrypted databases or develop timeline correlation between multiple mobile applications with conflict resolution for timestamp discrepancies.
 
 ## 💡 Tips for Success
 
@@ -518,14 +479,11 @@ Create comprehensive test scenarios including:
 - Practical Mobile Forensics (Satish Bommisetty)
 - Cloud Security and Privacy (Tim Mather)
 
-### 🚨 IMPORTANT: Tool Access Issues
+### 🚨 IMPORTANT: Platform Choice and Data Access
 
-**If you encounter ANY issues accessing these tools** (installation problems, licensing concerns, broken links, etc.), **please contact the instructor IMMEDIATELY**. We will:
-- Provide alternative free tools
-- Update the assignment directions
-- Ensure no student faces barriers to completing the assignment
+**Platform Selection**: Choose either Android OR iOS analysis based on your interest and career goals. Both platforms provide equivalent learning outcomes.
 
-**Do not struggle in silence** - reach out as soon as you encounter any access problems!
+**Mobile Data Samples**: Pre-extracted mobile device data provided for both platforms. Contact the instructor immediately if you encounter issues accessing the sample data files.
 
 ---
 

@@ -2,75 +2,45 @@
 
 **Due**: End of Week 6 (see Canvas for exact deadline)  
 **Points**: 25 points  
+**Estimated Time**: 6 hours  
 **Submission**: Submit Pull Request URL to Canvas
 
 ## 🎯 Assignment Overview
 
-Analyze network security configurations and design security policies using industry-standard tools and practices. Your implementation should demonstrate understanding of firewall rules, network monitoring, and security policy development learned this week.
-
-**Time Estimate**: 8-10 hours (reduced from enterprise deployment complexity)
+Analyze network security configurations using provided firewall rules and network captures. This assignment focuses on security analysis and policy review using pre-configured tools and sample data.
 
 ## 📋 Requirements
 
-### Core Functionality (70 points)
+### Core Functionality (15 points)
 
-#### 1. Firewall Rule Analysis Tool (25 points)
-Build a Python tool that analyzes firewall configurations:
+**Focus Area: Firewall Analysis Engine**
 
-- **Rule parser** that reads common firewall formats (iptables, pfSense XML)
-- **Policy analyzer** identifying conflicts, redundancies, and gaps
-- **Risk assessment** scoring rules based on security best practices
-- **Report generation** with recommendations for improvement
+#### 1. Firewall Rule Analysis (15 points)
+Analyze provided firewall configurations:
 
-**Example functionality**:
-```python
-# Your tool should analyze rules like:
-firewall_analyzer = FirewallAnalyzer()
-firewall_analyzer.load_rules("sample_firewall.rules")
-firewall_analyzer.analyze_security_gaps()
-firewall_analyzer.generate_report("security_analysis.html")
-```
+- **Rule parser** for iptables format rules (provided samples)
+- **Policy conflict detection** identifying overlapping or contradictory rules
+- **Security gap identification** finding missing protections
+- **Risk scoring** based on rule permissiveness
+- **Report generation** with actionable recommendations
 
-#### 2. Network Traffic Monitor (25 points)
-Create a network monitoring tool using Python:
+*Note: Network capture files and analysis tools provided as sample data*
 
-- **Packet capture analysis** using provided pcap files
-- **Protocol analysis** identifying HTTP, HTTPS, DNS, etc.
-- **Anomaly detection** finding unusual traffic patterns
-- **Security event logging** identifying potential threats
+### Documentation and Analysis (5 points)
 
-**Key Features**:
-- Parse common protocols and extract metadata
-- Identify suspicious patterns (port scans, failed connections)
-- Generate alerts for security events
-- Export findings in JSON/CSV format
-
-#### 3. Security Policy Generator (20 points)
-Develop a tool that creates security policies:
-
-- **Network segmentation planner** based on asset inventory
-- **Access control matrix** defining who can access what
-- **Incident response playbook** for common network threats
-- **Compliance checker** against security frameworks (NIST, CIS)
-
-### Documentation and Analysis (20 points)
-
-Create network security analysis documentation:
+Create focused security analysis documentation:
 
 ```
 firewall_analysis_report.md    # Analysis of provided firewall rules
-network_monitoring_findings.md # Results from traffic analysis
-security_policy_recommendations.md # Policy recommendations
-implementation_guide.md        # How to use your tools
+security_recommendations.md    # Policy improvement recommendations
 ```
 
-### Professional Features (10 points - Optional)
+### Security Analysis (5 points)
 
-Choose one advanced feature:
-- **Web dashboard** displaying security metrics
-- **API integration** with threat intelligence feeds
-- **Machine learning** anomaly detection
-- **Automated remediation** suggestions
+Provide professional security assessment:
+- **Risk prioritization** of identified security gaps
+- **Remediation timeline** with implementation difficulty
+- **Cost-benefit analysis** of security improvements
 
 ## 🧪 Testing and Validation
 
@@ -80,22 +50,41 @@ Your tools will be tested with:
 - **Synthetic attack scenarios** for anomaly detection
 - **Real-world policy frameworks** for compliance checking
 
-## 📊 Grading Rubric
+## 📊 Grading Rubric (25 Points Total)
 
-### Technical Implementation (70 points)
-- **Firewall Analysis (25 pts)**: Rule parsing, conflict detection, recommendations
-- **Traffic Monitoring (25 pts)**: Packet analysis, anomaly detection, alerting  
-- **Policy Generation (20 pts)**: Segmentation planning, access controls, compliance
+### Component Breakdown
 
-### Documentation Quality (20 points)
-- **Clear analysis reports** with actionable recommendations
-- **Professional documentation** suitable for security teams
-- **Implementation guides** enabling tool usage
+| Component | Weight | Points |
+|-----------|---------|-------|
+| **Firewall Analysis** | 60% | 15 points |
+| **Documentation** | 20% | 5 points |
+| **Security Assessment** | 20% | 5 points |
 
-### Code Quality (10 points)
-- **Clean, readable code** with appropriate comments
-- **Error handling** for malformed inputs
-- **Modular design** enabling code reuse
+### 5-Point Scale Criteria
+
+**Firewall Analysis (15 points)**
+- **Excellent (15)**: Comprehensive rule parsing, accurate conflict detection, professional risk scoring, actionable recommendations
+- **Proficient (12)**: Good rule analysis, basic conflict detection, reasonable recommendations
+- **Developing (9)**: Simple rule parsing, limited conflict detection, basic recommendations
+- **Needs Improvement (6)**: Poor analysis quality, weak conflict detection, minimal recommendations
+- **Inadequate (3)**: Major analysis gaps, incorrect findings, unusable recommendations
+- **No Submission (0)**: Missing or no attempt
+
+**Documentation (5 points)**
+- **Excellent (5)**: Professional reports, clear findings, executive summary suitable for management
+- **Proficient (4)**: Good documentation, adequate explanations, decent presentation
+- **Developing (3)**: Basic documentation, limited explanations, simple presentation
+- **Needs Improvement (2)**: Poor documentation, unclear explanations, unprofessional
+- **Inadequate (1)**: Minimal documentation, major gaps, illegible
+- **No Submission (0)**: Missing or no attempt
+
+**Security Assessment (5 points)**
+- **Excellent (5)**: Thorough risk prioritization, realistic timelines, cost-benefit analysis, professional insights
+- **Proficient (4)**: Good risk assessment, adequate prioritization, reasonable recommendations
+- **Developing (3)**: Basic risk analysis, limited prioritization, simple recommendations
+- **Needs Improvement (2)**: Poor risk assessment, weak prioritization, unrealistic recommendations
+- **Inadequate (1)**: Minimal assessment, no prioritization, unusable recommendations
+- **No Submission (0)**: Missing or no attempt
 
 ## 🔍 Self-Assessment Questions
 
@@ -131,12 +120,10 @@ Before submitting, ask yourself:
 
 ### Required Files in Your PR
 - `firewall_analyzer.py` - Firewall rule analysis tool
-- `traffic_monitor.py` - Network traffic analysis tool
-- `policy_generator.py` - Security policy creation tool
 - `requirements.txt` - Python dependencies
-- `README.md` - Tool usage and setup instructions
-- `analysis_reports/` - Your analysis of provided sample data
-- `test_data/` - Sample inputs for testing (if created)
+- `README.md` - Tool usage and methodology
+- `firewall_analysis_report.md` - Analysis of provided firewall rules
+- `security_recommendations.md` - Policy improvement recommendations
 
 **Resources Provided**:
 - Sample firewall configurations in multiple formats

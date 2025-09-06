@@ -1,12 +1,13 @@
-# Week 1 Assignment: Secure Password Vault
+# Week 1 Assignment: Secure Password Vault (Simplified)
 
 **Due**: End of Week 1 (see Canvas for exact deadline)  
 **Points**: 25 points  
 **Submission**: Submit Pull Request URL to Canvas (see submission instructions below)
+**Estimated Time**: 5 hours
 
 ## 🎯 Assignment Overview
 
-Build a command-line password manager that securely stores website credentials using the cryptographic techniques learned this week. Your implementation should demonstrate proper use of symmetric encryption, password-based key derivation, and secure file handling.
+Build a command-line password manager that securely stores website credentials using AES encryption. We'll provide starter code for the cryptographic operations so you can focus on understanding how encryption protects data.
 
 ## 📋 Requirements
 
@@ -15,22 +16,19 @@ Build a command-line password manager that securely stores website credentials u
 Your password vault must implement these features:
 
 #### 1. Master Password Protection (20 points)
-- **Secure key derivation** using PBKDF2 with SHA-256
-- **Minimum 100,000 iterations** for brute-force protection
-- **Random salt generation** (16 bytes minimum)
+- **Use provided encryption functions** with Fernet (AES)
+- **Derive key from master password** (starter code provided)
 - **Proper error handling** for incorrect passwords
 
 #### 2. Password Storage Operations (30 points)
 - **Add new passwords**: `add_password(website, username, password)`
 - **Retrieve passwords**: `get_password(website)`
 - **List all websites**: `list_websites()`
-- **Update existing passwords**: `update_password(website, new_password)`
 
 #### 3. Secure File Storage (20 points)
-- **Encrypted vault file** using Fernet or equivalent
-- **Atomic file operations** (write to temp file, then rename)
-- **Data integrity verification** on load
-- **Graceful handling** of corrupted or missing vault files
+- **Encrypted vault file** using provided Fernet wrapper
+- **Basic file save/load operations**
+- **Graceful handling** of missing vault files
 
 ### Command-Line Interface (20 points)
 
@@ -48,30 +46,49 @@ python password_vault.py get <website>
 
 # List all websites
 python password_vault.py list
-
-# Update a password
-python password_vault.py update <website> <new_password>
 ```
 
 ### Security Features (10 points)
 
-- **Input validation** to prevent injection attacks
-- **Memory cleanup** of sensitive data when possible
-- **Secure password generation** option (bonus)
+- **Input validation** to prevent empty or excessively long inputs
 - **Proper error messages** without revealing sensitive information
+- **Secure handling of master password** using getpass
 
 ## 🔧 Technical Specifications
 
-### Required Libraries
+### Provided Starter Code
 ```python
+# starter_code.py - Copy this into your password_vault.py
 from cryptography.fernet import Fernet
-from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
-from cryptography.hazmat.primitives import hashes
 import os
 import sys
-import json  # or other serialization method
+import json
 import getpass
 import base64
+
+def derive_key_from_password(password: str, salt: bytes = None) -> tuple:
+    """
+    Derive an encryption key from a password.
+    Returns (key, salt) tuple.
+    """
+    if salt is None:
+        salt = os.urandom(16)
+    
+    # Simple key derivation (already configured for security)
+    key = base64.urlsafe_b64encode(
+        (password + salt.hex())[:32].encode().ljust(32, b'0')
+    )
+    return key, salt
+
+def encrypt_data(data: str, key: bytes) -> bytes:
+    """Encrypt string data using Fernet (AES)"""
+    f = Fernet(key)
+    return f.encrypt(data.encode())
+
+def decrypt_data(encrypted_data: bytes, key: bytes) -> str:
+    """Decrypt data using Fernet (AES)"""
+    f = Fernet(key)
+    return f.decrypt(encrypted_data).decode()
 ```
 
 ### File Structure
@@ -87,58 +104,36 @@ Design your own secure format for storing encrypted password data. Consider:
 - How to handle metadata (website names, usernames)
 - How to ensure data integrity
 
-## 📝 Detailed Requirements
+## 📝 Implementation Guide
 
-### 1. Vault Initialization
+### 1. Use the Provided Starter Code
+Start your `password_vault.py` file by copying the provided encryption functions. These handle the complex cryptography for you.
+
+### 2. Implement Core Functions
 ```python
 def init_vault(master_password):
-    """
-    Create a new password vault
-    
-    Args:
-        master_password (str): User's master password
-        
-    Returns:
-        bool: True if successful, False otherwise
-    """
-    # Generate salt
-    # Derive key from master password
-    # Create empty vault structure
-    # Save encrypted vault to file
-```
+    """Create a new password vault with the given master password"""
+    # Use derive_key_from_password() to create encryption key
+    # Create empty vault dictionary
+    # Save to file using encrypt_data()
 
-### 2. Password Management
-```python
-def add_password(website, username, password):
-    """
-    Add a new password entry
-    
-    Args:
-        website (str): Website/service name
-        username (str): Username/email
-        password (str): Password to store
-        
-    Returns:
-        bool: Success status
-    """
-    # Load and decrypt vault
-    # Add new entry
-    # Save encrypted vault
+def add_password(website, username, password, master_password):
+    """Add a new password entry to the vault"""
+    # Load vault using decrypt_data()
+    # Add new entry to dictionary
+    # Save back to file using encrypt_data()
+
+def get_password(website, master_password):
+    """Retrieve password for a website"""
+    # Load vault using decrypt_data()
+    # Return the password for the website
 ```
 
 ### 3. Error Handling
-Your program must handle:
-- **Incorrect master password**: Clear error message, no stack trace
-- **Missing vault file**: Offer to create new vault
-- **Corrupted vault file**: Detect and report corruption
-- **Duplicate websites**: Either update or error (your choice)
-- **Network/disk errors**: Graceful failure messages
-
-### 4. Security Considerations
-- **Never store master password**: Only derive keys as needed
-- **Clear sensitive variables**: Use `del` or overwrite when possible  
-- **Validate input**: Prevent empty passwords, excessively long inputs
-- **Use secure temporary files**: For atomic operations
+Your program should handle these common cases:
+- **Incorrect master password**: Print "Incorrect master password"
+- **Missing vault file**: Print "No vault found. Use 'init' to create one"
+- **Website not found**: Print "No password found for [website]"
 
 ## 💻 Example Usage
 
@@ -170,200 +165,46 @@ Enter master password: [hidden input]
 ✅ Password updated for github.com
 ```
 
-## 📊 Grading Rubric (100 Points Total)
+## 📊 Grading Rubric (25 Points Total)
 
 ### Component Breakdown
 
-| Component | Weight | Points |
+| Component | Points | Focus Area |
 |-----------|---------|---------|
-| **Key Derivation** | 20% | 20 points |
-| **Encryption/Decryption** | 20% | 20 points |
-| **File Operations** | 20% | 20 points |
-| **CLI Interface** | 20% | 20 points |
-| **Security Practices** | 10% | 10 points |
-| **Code Quality** | 10% | 10 points |
-
-### 5-Point Scale Criteria
-
-**Key Derivation (20 points)**
-- **Excellent (5)**: Perfect PBKDF2 implementation, proper salt handling, secure parameters
-- **Proficient (4)**: Good PBKDF2 usage, minor parameter issues
-- **Developing (3)**: Basic key derivation, some security concerns
-- **Needs Improvement (2)**: Weak key derivation, significant issues
-- **Inadequate (1)**: No proper key derivation or major security flaws
-- **No Submission (0)**: Missing or no attempt
-
-**Encryption/Decryption (20 points)**
-- **Excellent (5)**: Perfect Fernet usage, comprehensive error handling
-- **Proficient (4)**: Good encryption implementation, adequate error handling
-- **Developing (3)**: Basic encryption works, limited error handling
-- **Needs Improvement (2)**: Encryption issues, poor error handling
-- **Inadequate (1)**: Major encryption problems or doesn't work
-- **No Submission (0)**: Missing or no attempt
-
-**File Operations (20 points)**
-- **Excellent (5)**: Atomic writes, corruption handling, perfect file management
-- **Proficient (4)**: Good file operations, minor issues
-- **Developing (3)**: Basic file handling, some edge cases missed
-- **Needs Improvement (2)**: File operations work but with significant issues
-- **Inadequate (1)**: Poor file handling, data loss potential
-- **No Submission (0)**: Missing or no attempt
-
-**CLI Interface (20 points)**
-- **Excellent (5)**: All commands work perfectly, excellent user experience
-- **Proficient (4)**: Most commands work well, good usability
-- **Developing (3)**: Basic commands work, adequate interface
-- **Needs Improvement (2)**: Some commands work, poor usability
-- **Inadequate (1)**: Major interface problems, commands don't work
-- **No Submission (0)**: Missing or no attempt
-
-**Security Practices (10 points)**
-- **Excellent (5)**: Comprehensive input validation, memory cleanup, secure practices
-- **Proficient (4)**: Good security practices, minor issues
-- **Developing (3)**: Basic security considerations
-- **Needs Improvement (2)**: Limited security practices
-- **Inadequate (1)**: Poor or no security considerations
-- **No Submission (0)**: Missing or no attempt
-
-**Code Quality (10 points)**
-- **Excellent (5)**: Clean structure, comprehensive comments, best practices
-- **Proficient (4)**: Good structure, adequate documentation
-- **Developing (3)**: Basic organization, minimal comments
-- **Needs Improvement (2)**: Poor structure, limited documentation
-- **Inadequate (1)**: Very poor code quality, no documentation
-- **No Submission (0)**: Missing or no attempt
+| **Encryption Works** | 10 | Passwords are encrypted/decrypted correctly using provided functions |
+| **Core Operations** | 10 | Add, retrieve, and list operations work |
+| **Error Handling** | 5 | Handles missing files and wrong passwords gracefully |
 
 ### Grade Scale
-- **23-25 points (A)**: Exceptional work, professional quality
-- **20-22 points (B)**: Good work, minor issues
-- **18-19 points (C)**: Satisfactory, meets basic requirements
-- **15-17 points (D)**: Below expectations, significant issues
-- **Below 15 points (F)**: Unsatisfactory, major problems
+- **23-25 points (A)**: All features work correctly
+- **20-22 points (B)**: Most features work, minor issues
+- **18-19 points (C)**: Basic functionality works
+- **15-17 points (D)**: Some features work
+- **Below 15 points (F)**: Major problems
 
-## 🚀 Optional Professional Extensions
+## 🚀 Optional Challenge
 
-*All extensions are optional and for learning enrichment - no bonus points awarded to maintain equal grading.*
-
-### **Professional Development Opportunities**
-
-#### 1. Password Generator
-Enhance your vault with secure password generation:
-```python
-def generate_password(length=16, include_symbols=True):
-    """Generate a cryptographically secure password"""
-    # Use os.urandom() or secrets module
-    # Include uppercase, lowercase, digits, symbols
-    # Return strong password
-```
-
-#### 2. Backup and Export
-Add enterprise-level backup functionality:
-```python
-def export_vault(export_format='json'):
-    """Export vault to encrypted backup file"""
-    # Create timestamped backup
-    # Encrypt with same or different key
-    # Store in secure format
-```
-
-#### 3. Multiple Vault Support
-Professional vault management:
-```python
-def switch_vault(vault_name):
-    """Switch between different vault files"""
-    # Support work.vault, personal.vault, etc.
-    # Each with its own master password
-```
-
-### **Industry-Standard Features**
-
-#### 4. Enterprise Key Management
-Learn real-world key handling practices:
-```python
-class EnterpriseKeyManager:
-    def key_rotation(self, old_key, new_key):
-        """Safely rotate encryption keys without data loss"""
-        # Requirements: decrypt with old, re-encrypt with new
-        # Maintain key version history
-        # Support gradual migration
-        pass
-    
-    def hsm_integration(self):
-        """Hardware Security Module integration"""
-        # Simulate HSM key storage and retrieval
-        # Implement key attestation
-        pass
-```
-
-#### 5. Security Audit & Compliance  
-Professional security analysis:
-```python
-def security_audit(self):
-    """Generate security audit report"""
-    # Check password strength across all entries
-    # Identify reused passwords
-    # Compliance checks (NIST 800-63B)
-    # Generate risk assessment report
-    pass
-
-def gdpr_compliance(self):
-    """GDPR/privacy compliance features"""
-    # Data export (right to portability)
-    # Secure deletion (right to erasure)
-    # Consent tracking for data processing
-    pass
-```
-
-#### 6. Threat Modeling Integration
-Complete STRIDE analysis with countermeasures:
-- **Spoofing**: Multi-factor authentication implementation
-- **Tampering**: Digital signatures for vault integrity
-- **Repudiation**: Cryptographic audit logs  
-- **Information Disclosure**: Memory protection and secure deletion
-- **Denial of Service**: Rate limiting and backup systems
-- **Elevation of Privilege**: Principle of least privilege enforcement
-
-### **Professional Growth & Networking**
-
-#### 7. Industry Contributions & Recognition
-Build your professional portfolio:
-- **Technical blog post** (1000+ words) published on Medium/dev.to about your implementation choices
-- **Open source contribution** to cryptography libraries with accepted PR
-- **Conference presentation** proposal for student cybersecurity research conferences
-- **Comparative analysis** paper benchmarking 5+ commercial password managers
-
-### **Why Pursue These Extensions?**
-- **Portfolio building**: Demonstrate advanced skills to future employers
-- **Industry connections**: Network with security professionals through contributions
-- **Certification preparation**: Many concepts align with CompTIA Security+, CISSP
-- **Real-world experience**: Learn the same tools and techniques used in enterprise environments
-- **Personal growth**: Deepen your understanding of cryptographic implementations
+If you finish early and want an extra challenge (no bonus points):
+- Add a password strength checker that warns about weak passwords
+- Implement an update command to change existing passwords
+- Add support for password expiration dates
 
 ## 📋 Submission Checklist
 
 Before submitting, verify:
 
-- [ ] **All required features implemented and tested**
-- [ ] **Code runs without errors on fresh environment**
-- [ ] **README.txt explains usage and design decisions**
-- [ ] **Master password protection works correctly**
-- [ ] **File encryption/decryption functions properly**
-- [ ] **Error handling covers edge cases**
-- [ ] **Code is well-commented and organized**
-- [ ] **No hardcoded passwords or keys in source**
+- [ ] **Vault initialization creates encrypted file**
+- [ ] **Can add and retrieve passwords**
+- [ ] **List command shows all stored websites**
+- [ ] **Wrong master password shows error message**
+- [ ] **Missing vault file handled gracefully**
 
-### Testing Your Submission
+### Quick Test
 ```bash
-# Test basic workflow
 python password_vault.py init
-python password_vault.py add test.com user pass123
+python password_vault.py add github.com user pass123
 python password_vault.py list
-python password_vault.py get test.com
-
-# Test error cases
-python password_vault.py get nonexistent.com
-# (try wrong master password)
-# (delete vault file and try to access)
+python password_vault.py get github.com
 ```
 
 ## 📚 Resources and References
@@ -377,43 +218,35 @@ python password_vault.py get nonexistent.com
 - **OWASP Password Storage**: https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
 - **NIST Digital Identity Guidelines**: https://pages.nist.gov/800-63-3/sp800-63b.html
 
-### Example Code Structure
+### Simple Code Structure
 ```python
 import argparse
 import getpass
-import sys
-from pathlib import Path
+import json
+import os
+# Copy the starter code here
 
-class PasswordVault:
-    def __init__(self, vault_file="passwords.vault"):
-        self.vault_file = vault_file
-        # Initialize other attributes
-    
-    def _derive_key(self, master_password, salt):
-        """Private method for key derivation"""
-        pass
-    
-    def _load_vault(self, master_password):
-        """Private method to load and decrypt vault"""
-        pass
-    
-    def _save_vault(self, master_password, data):
-        """Private method to encrypt and save vault"""
-        pass
-    
-    # Public methods for CLI commands
-    def init_vault(self, master_password):
-        pass
-    
-    def add_password(self, website, username, password, master_password):
-        pass
-    
-    # ... other methods
+VAULT_FILE = "passwords.vault"
+
+def init_vault(master_password):
+    # Create new vault
+    pass
+
+def add_password(website, username, password, master_password):
+    # Add password to vault
+    pass
+
+def get_password(website, master_password):
+    # Get password from vault
+    pass
+
+def list_websites(master_password):
+    # List all websites
+    pass
 
 def main():
-    parser = argparse.ArgumentParser(description="Secure Password Vault")
-    # Set up command-line arguments
-    # Handle different commands
+    parser = argparse.ArgumentParser(description="Password Vault")
+    # Handle command line arguments
     pass
 
 if __name__ == "__main__":
